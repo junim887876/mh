@@ -56,6 +56,12 @@
       scrollbar-width: none;
     }
 
+    /* Altura segura de modal em navegadores de celular (iOS/Android) */
+    .modal-mobile-sheet {
+      max-height: 94vh;
+      max-height: 94dvh;
+    }
+
     /* Folha de Prévia A4 responsiva na tela */
     .a4-preview-card {
       background: #ffffff;
@@ -95,7 +101,7 @@
 
       <!-- Ações Rápidas do Topo -->
       <div class="flex items-center gap-1.5 shrink-0">
-        <button type="button" onclick="openSavedQuotesModal()" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5 transition" title="Projetos Salvos">
+        <button type="button" onclick="openSavedQuotesModal()" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5 transition active:scale-95" title="Projetos Salvos">
           <svg class="w-4 h-4 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
           </svg>
@@ -103,7 +109,7 @@
           <span id="saved-count-badge" class="bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded-full text-[10px] font-extrabold">0</span>
         </button>
 
-        <button type="button" onclick="saveCurrentQuote()" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1 transition" title="Salvar Projeto">
+        <button type="button" onclick="saveCurrentQuote()" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1 transition active:scale-95" title="Salvar Projeto">
           <svg class="w-4 h-4 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
             <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
@@ -111,7 +117,7 @@
           <span class="hidden sm:inline">Salvar</span>
         </button>
 
-        <button type="button" onclick="confirmNewQuote()" class="px-2.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-extrabold flex items-center gap-1 shadow transition">
+        <button type="button" onclick="confirmNewQuote()" class="px-2.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-extrabold flex items-center gap-1 shadow transition active:scale-95">
           <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -154,7 +160,7 @@
       <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div class="min-w-0">
           <h2 class="text-base sm:text-lg font-extrabold text-slate-900">Móveis do Projeto</h2>
-          <p class="text-xs text-slate-500">Monte cada módulo com medidas, cores de MDF, gavetas horizontais ou verticais e baixe o PDF.</p>
+          <p class="text-xs text-slate-500">Monte armários, guarda-roupas em L, cozinhas com gavetas laterais ou divididas, perfis e baixe o PDF.</p>
         </div>
         <div class="flex items-center gap-2 shrink-0">
           <button type="button" onclick="openItemEditor(null)" class="flex-1 sm:flex-none px-4 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-orange-600/20 flex items-center justify-center gap-2 active:scale-[0.98] transition">
@@ -210,42 +216,42 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Nome do Cliente</label>
-            <input type="text" id="client-name" oninput="syncStateFromInputs()" placeholder="Ex: Carlos Eduardo Mendes" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="client-name" oninput="syncStateFromInputs()" placeholder="Ex: Carlos Eduardo Mendes" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Telefone / Contato</label>
-            <input type="tel" id="client-phone" oninput="syncStateFromInputs()" placeholder="Ex: (62) 99999-8888" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="tel" id="client-phone" oninput="syncStateFromInputs()" placeholder="Ex: (62) 99999-8888" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div class="sm:col-span-2">
             <label class="block text-xs font-bold text-slate-700 mb-1">Endereço / Local da Instalação</label>
-            <input type="text" id="client-address" oninput="syncStateFromInputs()" placeholder="Ex: Residencial Jardins, Quadra 12" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="client-address" oninput="syncStateFromInputs()" placeholder="Ex: Residencial Jardins, Quadra 12" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Código do Projeto</label>
-            <input type="text" id="quote-number" oninput="syncStateFromInputs()" placeholder="#2026-001" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-mono-tech focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="quote-number" oninput="syncStateFromInputs()" placeholder="#2026-001" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm font-mono-tech focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Data de Emissão</label>
-            <input type="text" id="quote-date" oninput="syncStateFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="quote-date" oninput="syncStateFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Prazo de Fabricação e Montagem</label>
-            <input type="text" id="quote-delivery" oninput="syncStateFromInputs()" placeholder="Ex: 25 a 30 dias úteis" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="quote-delivery" oninput="syncStateFromInputs()" placeholder="Ex: 25 a 30 dias úteis" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Validade do Projeto</label>
-            <input type="text" id="quote-validity" oninput="syncStateFromInputs()" placeholder="Ex: 15 dias corridos" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="quote-validity" oninput="syncStateFromInputs()" placeholder="Ex: 15 dias corridos" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div class="sm:col-span-2">
             <label class="block text-xs font-bold text-slate-700 mb-1">Observações Técnicas & Garantia no PDF</label>
-            <textarea id="quote-notes" rows="3" oninput="syncStateFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+            <textarea id="quote-notes" rows="3" oninput="syncStateFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
           </div>
         </div>
 
@@ -295,43 +301,43 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Nome da Marcenaria</label>
-            <input type="text" id="comp-name" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="comp-name" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Slogan / Especialidade</label>
-            <input type="text" id="comp-tagline" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="comp-tagline" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Marceneiro / Projetista</label>
-            <input type="text" id="comp-owner" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="comp-owner" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Telefone Comercial</label>
-            <input type="tel" id="comp-phone" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="tel" id="comp-phone" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">CNPJ ou CPF</label>
-            <input type="text" id="comp-doc" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="comp-doc" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Cidade / Instagram</label>
-            <input type="text" id="comp-social" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="comp-social" oninput="syncCompanyFromInputs()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-2">Cor Principal do Cabeçalho do PDF</label>
           <div class="flex flex-wrap gap-3" id="brand-color-picker">
-            <button type="button" onclick="setBrandColor('#b45309')" class="w-9 h-9 rounded-full bg-amber-700 ring-2 ring-offset-2 ring-amber-700" title="Âmbar Madeira"></button>
-            <button type="button" onclick="setBrandColor('#0f172a')" class="w-9 h-9 rounded-full bg-slate-900" title="Grafite Executivo"></button>
-            <button type="button" onclick="setBrandColor('#065f46')" class="w-9 h-9 rounded-full bg-emerald-800" title="Verde Esmeralda"></button>
-            <button type="button" onclick="setBrandColor('#1e3a8a')" class="w-9 h-9 rounded-full bg-blue-900" title="Azul Arquitetura"></button>
-            <button type="button" onclick="setBrandColor('#7c2d12')" class="w-9 h-9 rounded-full bg-orange-900" title="Mogno Nobre"></button>
+            <button type="button" data-brand="#b45309" onclick="setBrandColor('#b45309')" class="brand-swatch w-9 h-9 rounded-full bg-amber-700 transition" title="Âmbar Madeira"></button>
+            <button type="button" data-brand="#0f172a" onclick="setBrandColor('#0f172a')" class="brand-swatch w-9 h-9 rounded-full bg-slate-900 transition" title="Grafite Executivo"></button>
+            <button type="button" data-brand="#065f46" onclick="setBrandColor('#065f46')" class="brand-swatch w-9 h-9 rounded-full bg-emerald-800 transition" title="Verde Esmeralda"></button>
+            <button type="button" data-brand="#1e3a8a" onclick="setBrandColor('#1e3a8a')" class="brand-swatch w-9 h-9 rounded-full bg-blue-900 transition" title="Azul Arquitetura"></button>
+            <button type="button" data-brand="#7c2d12" onclick="setBrandColor('#7c2d12')" class="brand-swatch w-9 h-9 rounded-full bg-orange-900 transition" title="Mogno Nobre"></button>
           </div>
         </div>
       </div>
@@ -347,7 +353,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 class="text-sm sm:text-base font-extrabold">Caderno Técnico Pronto para Baixar</h2>
-            <p class="text-xs text-slate-400">Cada móvel é renderizado em alta definição com todas as medidas, cores de MDF e divisões configuradas.</p>
+            <p class="text-xs text-slate-400">Cada móvel é renderizado em alta definição com todas as medidas, cores de MDF, perfis e divisões configuradas.</p>
           </div>
           <button type="button" onclick="downloadDirectPDF()" class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 active:scale-[0.98] transition shrink-0">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -411,27 +417,27 @@
   <!-- MODAL INTERATIVO: ESTÚDIO VISUAL DE MONTAGEM DO MÓVEL                 -->
   <!-- ===================================================================== -->
   <div id="item-editor-modal" class="no-print fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xs hidden flex flex-col justify-end sm:justify-center">
-    <div class="bg-white w-full max-w-4xl mx-auto rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col max-h-[94vh]">
+    <div class="modal-mobile-sheet bg-white w-full max-w-4xl mx-auto rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col">
 
       <!-- Cabeçalho Fixo do Modal -->
-      <div class="bg-slate-900 text-white px-4 py-3 flex items-center justify-between shrink-0">
+      <div class="bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between shrink-0">
         <div class="min-w-0">
           <h3 id="modal-editor-title" class="text-sm sm:text-base font-extrabold truncate">Montar Móvel Sob Medida</h3>
-          <p class="text-[11px] text-amber-400 truncate">O desenho 2.5D abaixo será impresso exatamente assim no PDF</p>
+          <p class="text-[11px] text-amber-400 truncate">Desenho 2.5D em tempo real • Vai exatamente assim no PDF</p>
         </div>
         <button type="button" onclick="closeItemEditor()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 shrink-0">
           ✕
         </button>
       </div>
 
-      <!-- PRÉVIA VISUAL FIXA NO TOPO NO CELULAR (NUNCA SOME AO ROLAR OS CONTROLES) -->
-      <div class="bg-slate-100 px-3 py-2.5 border-b border-slate-200 shrink-0">
+      <!-- PRÉVIA VISUAL FIXA NO TOPO NO CELULAR (COMPACTA PARA SOBRAR ESPAÇO DE ROLAGEM) -->
+      <div class="bg-slate-100 px-3 py-2 border-b border-slate-200 shrink-0">
         <div class="max-w-md mx-auto">
-          <div class="flex items-center justify-between gap-2 mb-1.5">
+          <div class="flex items-center justify-between gap-2 mb-1">
             <span id="live-dim-badge" class="text-[11px] font-mono-tech font-bold bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-800">200 × 220 × 55 cm</span>
             <div class="flex items-center gap-1.5">
               <button type="button" id="live-view-toggle-btn" onclick="toggleEditorInternalView()" class="text-[11px] font-bold bg-white hover:bg-amber-50 text-slate-700 px-2.5 py-0.5 rounded-md border border-slate-300 transition">
-                👁️ Vista Externa
+                👁️ Vista Interna
               </button>
               <button type="button" onclick="swapEditorColors()" class="text-[11px] font-bold bg-white hover:bg-slate-50 text-amber-700 px-2 py-0.5 rounded-md border border-slate-300" title="Inverter cores Caixa e Frente">
                 ⇄ Inverter
@@ -439,86 +445,119 @@
             </div>
           </div>
 
-          <div id="live-svg-preview-box" class="bg-white rounded-xl border border-slate-200 p-1.5 flex items-center justify-center shadow-2xs">
+          <div id="live-svg-preview-box" class="bg-white rounded-xl border border-slate-200 p-1 flex items-center justify-center shadow-2xs max-h-[160px] sm:max-h-[215px] overflow-hidden">
             <!-- SVG em tempo real -->
           </div>
 
-          <div class="mt-1.5 flex items-center justify-between text-[10px] px-1">
-            <span>Caixa: <strong id="preview-body-color-name" class="text-slate-800">Branco TX</strong></span>
-            <span>Frentes: <strong id="preview-front-color-name" class="text-amber-800">Louro Freijó</strong></span>
+          <div class="mt-1 flex items-center justify-between text-[10px] px-1 gap-2 truncate">
+            <span class="truncate">Caixa: <strong id="preview-body-color-name" class="text-slate-800">Branco TX</strong></span>
+            <span class="truncate">Frente: <strong id="preview-front-color-name" class="text-amber-800">Louro Freijó</strong></span>
+            <span class="truncate hidden sm:inline">Perfil: <strong id="preview-profile-color-name" class="text-slate-700">Alumínio Natural</strong></span>
           </div>
         </div>
       </div>
 
       <!-- CORPO ROLÁVEL COM TODOS OS CONTROLES DETALHADOS -->
-      <div class="p-4 sm:p-5 space-y-4 overflow-y-auto flex-1">
+      <div class="p-3.5 sm:p-5 space-y-4 overflow-y-auto flex-1">
+
+        <!-- ATALHOS RÁPIDOS EM 1 TOQUE (FACILITA MUITO NO CELULAR) -->
+        <div id="quick-presets-bar" class="space-y-1.5">
+          <span class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-500">⚡ Modelos Prontos em 1 Toque (Opcional)</span>
+          <div class="flex gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+            <button type="button" onclick="applyQuickPreset('cozinha_balcao')" class="px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-[11px] font-extrabold text-amber-900 shrink-0">
+              🍳 Balcão Cozinha (3P + 4G Lado)
+            </button>
+            <button type="button" onclick="applyQuickPreset('roupa_centro')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[11px] font-bold text-slate-800 shrink-0">
+              🚪 Guarda-Roupa (6P + 4G Centro)
+            </button>
+            <button type="button" onclick="applyQuickPreset('roupa_l')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[11px] font-bold text-slate-800 shrink-0">
+              📐 Guarda-Roupa em L (Canto)
+            </button>
+            <button type="button" onclick="applyQuickPreset('roupa_3etapas')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[11px] font-bold text-slate-800 shrink-0">
+              🗄️ Gavetas em 3 Etapas
+            </button>
+            <button type="button" onclick="applyQuickPreset('painel_ripado')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[11px] font-bold text-slate-800 shrink-0">
+              📺 Painel + Rack TV
+            </button>
+          </div>
+        </div>
 
         <!-- 1. Nome, Ambiente e Quantidade -->
         <div class="grid grid-cols-12 gap-2.5">
           <div class="col-span-12 sm:col-span-6">
             <label class="block text-[11px] font-extrabold uppercase text-slate-600 mb-1">Nome do Móvel *</label>
-            <input type="text" id="ed-name" oninput="updateEditorPreview()" placeholder="Ex: Armário Cozinha, Painel TV, Guarda-Roupa..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-semibold focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="ed-name" oninput="updateEditorPreview()" placeholder="Ex: Armário Cozinha, Guarda-Roupa em L..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-base sm:text-sm font-semibold focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
           <div class="col-span-8 sm:col-span-4">
             <label class="block text-[11px] font-extrabold uppercase text-slate-600 mb-1">Ambiente</label>
-            <input type="text" id="ed-room" oninput="updateEditorPreview()" placeholder="Ex: Cozinha, Quarto..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="text" id="ed-room" oninput="updateEditorPreview()" placeholder="Ex: Cozinha, Suíte..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-base sm:text-sm focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
           <div class="col-span-4 sm:col-span-2">
             <label class="block text-[11px] font-extrabold uppercase text-slate-600 mb-1">Qtd.</label>
-            <input type="number" id="ed-qty" min="1" max="99" value="1" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 text-sm font-mono-tech font-bold text-center focus:ring-2 focus:ring-amber-500 outline-none" />
+            <input type="number" id="ed-qty" min="1" max="99" value="1" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 text-base sm:text-sm font-mono-tech font-bold text-center focus:ring-2 focus:ring-amber-500 outline-none" />
           </div>
         </div>
 
-        <!-- 2. Modelo Estrutural -->
+        <!-- 2. Modelo Estrutural (6 Opções Incluindo Cozinha e Canto em L) -->
         <div>
           <label class="block text-[11px] font-extrabold uppercase text-slate-600 mb-1.5">1. Estrutura / Arquétipo do Móvel</label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            <button type="button" data-type="armario" onclick="setEditorType('armario')" class="type-btn py-2 px-2 rounded-xl border text-xs font-bold text-center transition">
-              🚪 Armário / Balcão
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button type="button" data-type="armario" onclick="setEditorType('armario')" class="type-btn py-2.5 px-2 rounded-xl border text-xs font-bold text-center transition">
+              🚪 Guarda-Roupa / Armário
             </button>
-            <button type="button" data-type="painel_tv" onclick="setEditorType('painel_tv')" class="type-btn py-2 px-2 rounded-xl border text-xs font-bold text-center transition">
-              📺 Painel + Rack
+            <button type="button" data-type="armario_l" onclick="setEditorType('armario_l')" class="type-btn py-2.5 px-2 rounded-xl border text-xs font-bold text-center transition">
+              📐 Armário / Roupeiro em L
             </button>
-            <button type="button" data-type="mesa" onclick="setEditorType('mesa')" class="type-btn py-2 px-2 rounded-xl border text-xs font-bold text-center transition">
+            <button type="button" data-type="cozinha" onclick="setEditorType('cozinha')" class="type-btn py-2.5 px-2 rounded-xl border text-xs font-bold text-center transition">
+              🍳 Armário / Balcão Cozinha
+            </button>
+            <button type="button" data-type="painel_tv" onclick="setEditorType('painel_tv')" class="type-btn py-2.5 px-2 rounded-xl border text-xs font-bold text-center transition">
+              📺 Painel + Rack TV
+            </button>
+            <button type="button" data-type="mesa" onclick="setEditorType('mesa')" class="type-btn py-2.5 px-2 rounded-xl border text-xs font-bold text-center transition">
               💻 Mesa / Bancada
             </button>
-            <button type="button" data-type="nicho" onclick="setEditorType('nicho')" class="type-btn py-2 px-2 rounded-xl border text-xs font-bold text-center transition">
+            <button type="button" data-type="nicho" onclick="setEditorType('nicho')" class="type-btn py-2.5 px-2 rounded-xl border text-xs font-bold text-center transition">
               📚 Estante / Nichos
             </button>
           </div>
         </div>
 
-        <!-- 3. Dimensões em Centímetros -->
-        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/90">
-          <label class="block text-[11px] font-extrabold uppercase text-slate-600 mb-2">2. Dimensões Externas (cm)</label>
-          <div class="grid grid-cols-3 gap-2.5">
+        <!-- 3. Dimensões em Centímetros (Com Lado Esquerdo e Lado Direito quando for em L) -->
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/90 space-y-2">
+          <label class="block text-[11px] font-extrabold uppercase text-slate-600">2. Dimensões Externas (cm)</label>
+          <div id="dimensions-grid" class="grid grid-cols-3 gap-2">
             <div>
-              <span class="block text-[11px] text-slate-500 font-bold mb-1 text-center">Largura (L)</span>
-              <input type="number" id="ed-width" min="10" max="1500" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-sm font-mono-tech font-extrabold text-center" />
+              <span id="label-width-1" class="block text-[11px] text-slate-500 font-bold mb-1 text-center">Largura (L)</span>
+              <input type="number" id="ed-width" min="10" max="1500" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-sm font-mono-tech font-extrabold text-center" />
+            </div>
+            <div id="box-width-2" class="hidden">
+              <span class="block text-[11px] text-amber-800 font-extrabold mb-1 text-center">Lado Dir. (L2)</span>
+              <input type="number" id="ed-width2" min="20" max="1500" value="180" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-amber-400 bg-amber-50/40 text-base sm:text-sm font-mono-tech font-extrabold text-center" />
             </div>
             <div>
               <span class="block text-[11px] text-slate-500 font-bold mb-1 text-center">Altura (A)</span>
-              <input type="number" id="ed-height" min="10" max="600" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-sm font-mono-tech font-extrabold text-center" />
+              <input type="number" id="ed-height" min="10" max="600" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-sm font-mono-tech font-extrabold text-center" />
             </div>
             <div>
               <span class="block text-[11px] text-slate-500 font-bold mb-1 text-center">Profundidade (P)</span>
-              <input type="number" id="ed-depth" min="5" max="300" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-sm font-mono-tech font-extrabold text-center" />
+              <input type="number" id="ed-depth" min="5" max="300" oninput="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-sm font-mono-tech font-extrabold text-center" />
             </div>
           </div>
         </div>
 
-        <!-- 4. Portas & Gavetas (Com Sentido Horizontal / Vertical e Posição!) -->
+        <!-- 4. Portas & Gavetas (Divisão Lateral, Centro, 2 Etapas, 3 Etapas, Base ou Topo) -->
         <div class="bg-amber-50/50 p-3 rounded-2xl border border-amber-200/80 space-y-3">
-          <label class="block text-[11px] font-extrabold uppercase text-amber-900">3. Portas, Gavetas & Divisões Internas</label>
+          <label class="block text-[11px] font-extrabold uppercase text-amber-900">3. Portas, Gavetas & Divisão dos Módulos</label>
 
           <div class="grid grid-cols-3 gap-2">
             <!-- Qtd Portas -->
             <div class="bg-white p-2 rounded-xl border border-slate-200 text-center">
               <span id="label-doors" class="block text-[10px] font-bold text-slate-500 mb-1">Portas</span>
               <div class="flex items-center justify-center gap-2">
-                <button type="button" onclick="stepParam('ed-doors', -1, 0, 12)" class="w-7 h-7 rounded-lg bg-slate-100 font-extrabold text-slate-700">-</button>
-                <span id="val-doors" class="font-mono-tech font-extrabold text-sm w-4">4</span>
-                <button type="button" onclick="stepParam('ed-doors', 1, 0, 12)" class="w-7 h-7 rounded-lg bg-slate-100 font-extrabold text-slate-700">+</button>
+                <button type="button" onclick="stepParam('ed-doors', -1, 0, 14)" class="w-8 h-8 rounded-lg bg-slate-100 active:bg-slate-200 font-extrabold text-slate-700">-</button>
+                <span id="val-doors" class="font-mono-tech font-extrabold text-sm w-5">4</span>
+                <button type="button" onclick="stepParam('ed-doors', 1, 0, 14)" class="w-8 h-8 rounded-lg bg-slate-100 active:bg-slate-200 font-extrabold text-slate-700">+</button>
               </div>
               <input type="hidden" id="ed-doors" value="4" />
             </div>
@@ -527,66 +566,61 @@
             <div class="bg-white p-2 rounded-xl border border-slate-200 text-center">
               <span id="label-drawers" class="block text-[10px] font-bold text-slate-500 mb-1">Gavetas</span>
               <div class="flex items-center justify-center gap-2">
-                <button type="button" onclick="stepParam('ed-drawers', -1, 0, 12)" class="w-7 h-7 rounded-lg bg-slate-100 font-extrabold text-slate-700">-</button>
-                <span id="val-drawers" class="font-mono-tech font-extrabold text-sm w-4">2</span>
-                <button type="button" onclick="stepParam('ed-drawers', 1, 0, 12)" class="w-7 h-7 rounded-lg bg-slate-100 font-extrabold text-slate-700">+</button>
+                <button type="button" onclick="stepParam('ed-drawers', -1, 0, 16)" class="w-8 h-8 rounded-lg bg-slate-100 active:bg-slate-200 font-extrabold text-slate-700">-</button>
+                <span id="val-drawers" class="font-mono-tech font-extrabold text-sm w-5">4</span>
+                <button type="button" onclick="stepParam('ed-drawers', 1, 0, 16)" class="w-8 h-8 rounded-lg bg-slate-100 active:bg-slate-200 font-extrabold text-slate-700">+</button>
               </div>
-              <input type="hidden" id="ed-drawers" value="2" />
+              <input type="hidden" id="ed-drawers" value="4" />
             </div>
 
             <!-- Prateleiras Internas -->
             <div class="bg-white p-2 rounded-xl border border-slate-200 text-center">
               <span class="block text-[10px] font-bold text-slate-500 mb-1">Prateleiras</span>
               <div class="flex items-center justify-center gap-2">
-                <button type="button" onclick="stepParam('ed-shelves', -1, 1, 8)" class="w-7 h-7 rounded-lg bg-slate-100 font-extrabold text-slate-700">-</button>
-                <span id="val-shelves" class="font-mono-tech font-extrabold text-sm w-4">3</span>
-                <button type="button" onclick="stepParam('ed-shelves', 1, 1, 8)" class="w-7 h-7 rounded-lg bg-slate-100 font-extrabold text-slate-700">+</button>
+                <button type="button" onclick="stepParam('ed-shelves', -1, 1, 8)" class="w-8 h-8 rounded-lg bg-slate-100 active:bg-slate-200 font-extrabold text-slate-700">-</button>
+                <span id="val-shelves" class="font-mono-tech font-extrabold text-sm w-5">3</span>
+                <button type="button" onclick="stepParam('ed-shelves', 1, 1, 8)" class="w-8 h-8 rounded-lg bg-slate-100 active:bg-slate-200 font-extrabold text-slate-700">+</button>
               </div>
               <input type="hidden" id="ed-shelves" value="3" />
             </div>
           </div>
 
-          <!-- Disposição das Gavetas (Horizontal Empilhada vs Vertical Lado a Lado) -->
+          <!-- ONDE FICAM AS GAVETAS (Resolve exatamente gavetas ao lado das portas, no meio do guarda-roupa, ou divididas em 2/3 etapas!) -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div>
-              <label class="block text-[11px] font-bold text-slate-700 mb-1">Disposição das Gavetas</label>
-              <select id="ed-drawer-dir" onchange="updateEditorPreview()" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold text-slate-800 outline-none">
-                <option value="horizontal">Horizontal (Empilhadas / Deitadas)</option>
-                <option value="vertical">Vertical (Lado a Lado / Em Linha)</option>
+              <label class="block text-[11px] font-extrabold text-amber-950 mb-1">Onde Ficam as Gavetas (Layout)</label>
+              <select id="ed-drawer-pos" onchange="updateEditorPreview()" class="w-full px-3 py-2.5 rounded-xl border border-amber-300 bg-white text-base sm:text-xs font-bold text-slate-900 outline-none">
+                <option value="lateral_dir">Ao Lado Direito das Portas (Gaveteiro Dir.)</option>
+                <option value="lateral_esq">Ao Lado Esquerdo das Portas (Gaveteiro Esq.)</option>
+                <option value="centro_dividido">Dividido no Meio (Portas Pontas + Gavetas Centro)</option>
+                <option value="duas_etapas">2 Etapas (Gavetas nas 2 Pontas + Portas Meio)</option>
+                <option value="tres_etapas">3 Etapas (Gavetas Divididas em 3 Colunas)</option>
+                <option value="base">Na Base (Abaixo de Todas as Portas)</option>
+                <option value="topo">No Topo (Acima de Todas as Portas)</option>
               </select>
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-slate-700 mb-1">Posição das Gavetas</label>
-              <select id="ed-drawer-pos" onchange="updateEditorPreview()" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold text-slate-800 outline-none">
-                <option value="base">Na Base (Abaixo das Portas)</option>
-                <option value="topo">No Topo (Acima das Portas / Balcão)</option>
+              <label class="block text-[11px] font-bold text-slate-700 mb-1">Sentido das Gavetas</label>
+              <select id="ed-drawer-dir" onchange="updateEditorPreview()" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-base sm:text-xs font-bold text-slate-800 outline-none">
+                <option value="horizontal">Empilhadas (Uma sobre a outra)</option>
+                <option value="vertical">Lado a Lado (Em linha)</option>
               </select>
             </div>
           </div>
 
-          <!-- Tipo de Porta, Puxador, Fixação e LED -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <!-- Abertura Portas, Fixação e LED -->
+          <div class="grid grid-cols-3 gap-2">
             <div>
               <label class="block text-[10px] font-bold text-slate-600 mb-1">Abertura Portas</label>
-              <select id="ed-door-type" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-xs font-semibold outline-none">
+              <select id="ed-door-type" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-xs font-semibold outline-none">
                 <option value="giro">Giro (Abrir)</option>
                 <option value="correr">De Correr</option>
                 <option value="basculante">Basculante</option>
               </select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-600 mb-1">Puxador</label>
-              <select id="ed-handle" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-xs font-semibold outline-none">
-                <option value="perfil">Perfil Alumínio</option>
-                <option value="barra">Puxador Barra</option>
-                <option value="ponto">Puxador Ponto</option>
-                <option value="cava">Cava 45° / Gola</option>
-                <option value="toque">Fecho Toque</option>
-              </select>
-            </div>
-            <div>
               <label class="block text-[10px] font-bold text-slate-600 mb-1">Base / Fixação</label>
-              <select id="ed-mount" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-xs font-semibold outline-none">
+              <select id="ed-mount" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-xs font-semibold outline-none">
                 <option value="rodape">Rodapé Recuado</option>
                 <option value="suspenso">Suspenso Parede</option>
                 <option value="pes">Pés / Estrutura</option>
@@ -594,7 +628,7 @@
             </div>
             <div>
               <label class="block text-[10px] font-bold text-slate-600 mb-1">Iluminação LED</label>
-              <select id="ed-led" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-xs font-semibold outline-none">
+              <select id="ed-led" onchange="updateEditorPreview()" class="w-full px-2 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-xs font-semibold outline-none">
                 <option value="none">Sem LED</option>
                 <option value="quente">LED Quente 3000K</option>
                 <option value="neutro">LED Neutro 4000K</option>
@@ -603,10 +637,56 @@
           </div>
         </div>
 
-        <!-- 5. Catálogo de Cores MDF (15 Padrões Reais) -->
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <label class="block text-[11px] font-extrabold uppercase text-slate-600">4. Acabamento MDF (Cores & Texturas)</label>
+        <!-- 5. PERFIS & PUXADORES (Adicionado conforme Áudio 2!) -->
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/90 space-y-2.5">
+          <label class="block text-[11px] font-extrabold uppercase text-slate-700">4. Perfis de Acabamento & Puxadores</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 mb-1">Modelo de Perfil / Puxador</label>
+              <select id="ed-handle" onchange="updateEditorPreview()" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-xs font-bold text-slate-800 outline-none">
+                <option value="perfil_gola">Perfil Gola / Cava Contínua</option>
+                <option value="perfil_puxador">Perfil Puxador de Borda (Sobrepor)</option>
+                <option value="perfil_vidro">Porta Vidro / Reflecta c/ Perfil Alumínio</option>
+                <option value="barra">Puxador Barra / Alça</option>
+                <option value="ponto">Puxador Ponto / Botão</option>
+                <option value="cava_45">Cava Usinada 45° no MDF</option>
+                <option value="toque">Fecho Toque (Sem Puxador)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 mb-1">Cor / Acabamento do Perfil</label>
+              <select id="ed-profile-color" onchange="updateEditorPreview()" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-xs font-bold text-slate-800 outline-none">
+                <option value="natural">Alumínio Natural / Fosco</option>
+                <option value="preto">Preto Anodizado / Fosco</option>
+                <option value="champanhe">Champanhe</option>
+                <option value="dourado">Dourado / Latão</option>
+                <option value="bronze">Bronze</option>
+                <option value="branco">Branco</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Perfis Complementares -->
+          <div class="flex flex-wrap gap-2 pt-0.5 text-[11px]">
+            <label class="inline-flex items-center gap-1.5 bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 cursor-pointer font-semibold text-slate-700">
+              <input type="checkbox" id="ed-prof-borda" checked onchange="updateEditorPreview()" class="rounded text-amber-600" />
+              <span>Fita Borda PVC 1mm/2mm</span>
+            </label>
+            <label class="inline-flex items-center gap-1.5 bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 cursor-pointer font-semibold text-slate-700">
+              <input type="checkbox" id="ed-prof-trilho" onchange="updateEditorPreview()" class="rounded text-amber-600" />
+              <span>Perfil Trilho / Guia Alumínio</span>
+            </label>
+            <label class="inline-flex items-center gap-1.5 bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 cursor-pointer font-semibold text-slate-700">
+              <input type="checkbox" id="ed-prof-led" onchange="updateEditorPreview()" class="rounded text-amber-600" />
+              <span>Perfil Embutido p/ Fita LED</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 6. Catálogo de Cores MDF (15 Padrões Reais) -->
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <label class="block text-[11px] font-extrabold uppercase text-slate-600">5. Acabamento MDF (Cores & Texturas)</label>
             <div class="flex gap-1 overflow-x-auto no-scrollbar">
               <button type="button" onclick="applyColorCombo('grafite','freijo')" class="px-2 py-0.5 rounded-md bg-slate-100 hover:bg-amber-100 text-[10px] font-bold text-slate-700 shrink-0">Freijó+Grafite</button>
               <button type="button" onclick="applyColorCombo('branco','carvalho')" class="px-2 py-0.5 rounded-md bg-slate-100 hover:bg-amber-100 text-[10px] font-bold text-slate-700 shrink-0">Carvalho+Branco</button>
@@ -626,15 +706,15 @@
           </div>
         </div>
 
-        <!-- 6. Memorial Descritivo Técnico + Foto Própria Opcional -->
+        <!-- 7. Memorial Descritivo Técnico + Foto Própria Opcional -->
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <label class="block text-[11px] font-extrabold uppercase text-slate-600">5. Memorial Descritivo no PDF</label>
+            <label class="block text-[11px] font-extrabold uppercase text-slate-600">6. Memorial Descritivo no PDF</label>
             <button type="button" onclick="autoGenerateSpecsText()" class="text-[11px] font-extrabold text-amber-700 bg-amber-100 hover:bg-amber-200 px-2.5 py-1 rounded-lg transition">
-              ✨ Preencher Automaticamente
+              ✨ Gerar Texto Técnico
             </button>
           </div>
-          <textarea id="ed-specs" rows="2" placeholder="Descreva ferragens, espessura do MDF (18mm/25mm), corrediças telescópicas, amortecedores..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+          <textarea id="ed-specs" rows="2" placeholder="Descreva ferragens, espessura do MDF (18mm/25mm), corrediças telescópicas, perfis..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-base sm:text-xs focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
 
           <!-- Opção de Foto Real -->
           <div class="flex items-center gap-2 pt-1">
@@ -721,7 +801,7 @@
   <div id="pdf-loading-overlay" class="no-print fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xs hidden flex flex-col items-center justify-center p-6 text-center text-white">
     <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-4"></div>
     <p class="text-base font-extrabold">Montando seu PDF Técnico...</p>
-    <p class="text-xs text-slate-300 mt-1">Renderizando desenhos, cores de MDF e medidas em alta resolução.</p>
+    <p class="text-xs text-slate-300 mt-1">Renderizando desenhos, cores de MDF, perfis e medidas em alta resolução.</p>
   </div>
 
   <!-- ===================================================================== -->
@@ -738,7 +818,6 @@
   <script>
     /**
      * 1. CATÁLOGO DE 15 PADRÕES REAIS DE MDF & ESPELHO/VIDRO
-     * Cada cor possui cores RGB exatas para o PDF e definição SVG própria para textura realista.
      */
     const MDF_CATALOG = [
       { id: 'branco',    name: 'Branco TX',          rgb: [248, 250, 252], swatch: '#f8fafc', border: '#cbd5e1', grain: 'none', c1: '#ffffff', c2: '#eef2f6', vein: '#cbd5e1' },
@@ -758,34 +837,57 @@
       { id: 'espelho',   name: 'Espelho / Vidro',    rgb: [203, 224, 238], swatch: '#cbe0ee', border: '#7aa2bd', grain: 'glass', c1: '#e0f2fe', c2: '#bae6fd', vein: '#ffffff' }
     ];
 
+    const PROFILE_COLORS = {
+      natural:   { name: 'Alumínio Natural', hex: '#94a3b8', stroke: '#475569' },
+      preto:     { name: 'Preto Anodizado',  hex: '#1e293b', stroke: '#09090b' },
+      champanhe: { name: 'Champanhe',        hex: '#d6c7b2', stroke: '#786b59' },
+      dourado:   { name: 'Dourado Fosco',    hex: '#d4af37', stroke: '#856810' },
+      bronze:    { name: 'Bronze',           hex: '#78553a', stroke: '#3f2a1b' },
+      branco:    { name: 'Branco',           hex: '#f8fafc', stroke: '#94a3b8' }
+    };
+
+    const DRAWER_POS_LABELS = {
+      lateral_dir:     'Ao Lado Direito das Portas',
+      lateral_esq:     'Ao Lado Esquerdo das Portas',
+      centro_dividido: 'No Meio (Portas Pontas + Gavetas Centro)',
+      duas_etapas:     '2 Etapas (Nas 2 Pontas)',
+      tres_etapas:     '3 Etapas (3 Colunas)',
+      base:            'Na Base (Toda Largura)',
+      topo:            'No Topo (Toda Largura)'
+    };
+
     const DOOR_TYPE_LABELS = {
-      giro: 'Portas de Giro',
-      correr: 'Portas de Correr',
+      giro:       'Portas de Giro',
+      correr:     'Portas de Correr',
       basculante: 'Portas Basculantes'
     };
 
     const HANDLE_LABELS = {
-      perfil: 'Perfil Alumínio',
-      barra: 'Puxador Barra',
-      ponto: 'Puxador Ponto',
-      cava: 'Cava 45° / Gola',
-      toque: 'Fecho Toque'
+      perfil_gola:    'Perfil Gola / Cava Contínua',
+      perfil_puxador: 'Perfil Puxador de Borda',
+      perfil_vidro:   'Porta Vidro c/ Perfil Alumínio',
+      perfil:         'Perfil Alumínio',
+      barra:          'Puxador Barra / Alça',
+      ponto:          'Puxador Ponto / Botão',
+      cava_45:        'Cava Usinada 45° no MDF',
+      cava:           'Cava 45° / Gola',
+      toque:          'Fecho Toque (Sem Puxador)'
     };
 
     const MOUNT_LABELS = {
-      rodape: 'Rodapé Recuado',
+      rodape:   'Rodapé Recuado',
       suspenso: 'Suspenso na Parede',
-      pes: 'Pés Estruturais'
+      pes:      'Pés Estruturais'
     };
 
     const LED_LABELS = {
-      none: 'Sem LED',
+      none:   'Sem LED',
       quente: 'LED Quente 3000K',
       neutro: 'LED Neutro 4000K'
     };
 
     /**
-     * 2. ESTADO GLOBAL DA APLICAÇÃO (INICIA SEM NENHUM MÓVEL DE EXEMPLO)
+     * 2. ESTADO GLOBAL DA APLICAÇÃO (INICIA 100% VAZIO)
      */
     let companyProfile = {
       name: 'Sua Marcenaria Planejados',
@@ -808,8 +910,8 @@
         clientName: '',
         clientPhone: '',
         clientAddress: '',
-        notes: '• Estrutura 100% MDF de primeira linha (18mm e 25mm).\n• Dobradiças com amortecimento Slow-Motion e corrediças telescópicas reforçadas.\n• Garantia de 5 anos contra defeitos de fabricação.',
-        items: [] // Inicia completamente vazio conforme solicitado!
+        notes: '• Estrutura 100% MDF de primeira linha (18mm e 25mm) com fita de borda PVC.\n• Dobradiças com amortecimento Slow-Motion e corrediças telescópicas reforçadas.\n• Garantia de 5 anos contra defeitos de fabricação.',
+        items: []
       };
     }
 
@@ -837,17 +939,18 @@
       populateCompanyInputs();
       populateQuoteInputs();
       initColorSwatches();
+      updateBrandSwatchRing();
       renderAll();
       updateSavedBadgeCount();
     });
 
     function loadFromLocalStorage() {
       try {
-        const savedCompany = localStorage.getItem('marcenaria_studio_comp_v3');
+        const savedCompany = localStorage.getItem('marcenaria_studio_comp_v4');
         if (savedCompany) {
           companyProfile = { ...companyProfile, ...JSON.parse(savedCompany) };
         }
-        const savedDraft = localStorage.getItem('marcenaria_studio_draft_v3');
+        const savedDraft = localStorage.getItem('marcenaria_studio_draft_v4');
         if (savedDraft) {
           const parsed = JSON.parse(savedDraft);
           if (parsed && Array.isArray(parsed.items)) {
@@ -861,7 +964,7 @@
 
     function persistDraft() {
       try {
-        localStorage.setItem('marcenaria_studio_draft_v3', JSON.stringify(currentQuote));
+        localStorage.setItem('marcenaria_studio_draft_v4', JSON.stringify(currentQuote));
       } catch (e) {
         console.warn('Armazenamento cheio:', e);
       }
@@ -869,7 +972,7 @@
 
     function persistCompany() {
       try {
-        localStorage.setItem('marcenaria_studio_comp_v3', JSON.stringify(companyProfile));
+        localStorage.setItem('marcenaria_studio_comp_v4', JSON.stringify(companyProfile));
       } catch (e) {
         showToast('Imagem da logo muito pesada para salvar localmente.');
       }
@@ -903,10 +1006,16 @@
       return MDF_CATALOG.find(c => c.id === id) || MDF_CATALOG[0];
     }
 
+    function getProfileColorInfo(id) {
+      return PROFILE_COLORS[id] || PROFILE_COLORS.natural;
+    }
+
     /**
-     * 5. MOTOR VETORIAL 2.5D AUTO-CONTIDO (GERA O DESENHO EXATO DO MÓVEL)
-     * Cada SVG possui seu próprio <defs> embutido para garantir renderização idêntica
-     * tanto na tela do telefone quanto na conversão para imagem PNG no PDF.
+     * 5. MOTOR VETORIAL 2.5D AUTO-CONTIDO
+     * Suporta:
+     * - Guarda-Roupa / Armário Reto e Cozinha com gavetas ao lado das portas, divididas no meio, 2 etapas ou 3 etapas
+     * - Guarda-Roupa / Armário em L (Canto) com L1 e L2 independentes
+     * - Perfis de acabamento coloridos (Natural, Preto, Champanhe, Dourado, Bronze, Branco)
      */
     function buildSvgPatternDef(patternId, mdf) {
       if (mdf.grain === 'wood') {
@@ -936,59 +1045,159 @@
       `;
     }
 
-    function renderHandleGraphic(handleType, x, y, w, h, orientation) {
+    function renderHandleGraphic(handleType, x, y, w, h, orientation, profColor) {
       if (handleType === 'toque') return '';
-      if (handleType === 'cava') {
+      const pFill = profColor ? profColor.hex : '#94a3b8';
+      const pStroke = profColor ? profColor.stroke : '#334155';
+
+      if (handleType === 'cava_45' || handleType === 'cava') {
         if (orientation === 'vertical') {
-          return `<rect x="${x}" y="${y}" width="2.2" height="${h}" fill="#334155" opacity="0.7" />`;
+          return `<rect x="${x}" y="${y}" width="2.2" height="${h}" fill="#334155" opacity="0.72" />`;
         }
-        return `<rect x="${x}" y="${y}" width="${w}" height="2.4" fill="#334155" opacity="0.7" />`;
+        return `<rect x="${x}" y="${y}" width="${w}" height="2.4" fill="#334155" opacity="0.72" />`;
       }
-      if (handleType === 'perfil') {
+
+      if (handleType === 'perfil_gola' || handleType === 'perfil_puxador' || handleType === 'perfil' || handleType === 'perfil_vidro') {
         if (orientation === 'vertical') {
-          return `<rect x="${x}" y="${y}" width="2.8" height="${h}" rx="0.5" fill="#94a3b8" stroke="#334155" stroke-width="0.5" />`;
+          return `<rect x="${x}" y="${y}" width="3.2" height="${h}" rx="0.4" fill="${pFill}" stroke="${pStroke}" stroke-width="0.55" />`;
         }
-        return `<rect x="${x}" y="${y}" width="${w}" height="2.8" rx="0.5" fill="#94a3b8" stroke="#334155" stroke-width="0.5" />`;
+        return `<rect x="${x}" y="${y}" width="${w}" height="3.2" rx="0.4" fill="${pFill}" stroke="${pStroke}" stroke-width="0.55" />`;
       }
+
       if (handleType === 'ponto') {
         const cx = x + (w || 3) / 2;
         const cy = y + (h || 3) / 2;
-        return `<circle cx="${cx}" cy="${cy}" r="2.4" fill="#475569" stroke="#0f172a" stroke-width="0.6" />`;
+        return `<circle cx="${cx}" cy="${cy}" r="2.4" fill="${pFill}" stroke="${pStroke}" stroke-width="0.7" />`;
       }
+
       // Padrão: barra
       if (orientation === 'vertical') {
-        return `<rect x="${x}" y="${y}" width="2.5" height="${h}" rx="1.2" fill="#334155" />`;
+        return `<rect x="${x}" y="${y}" width="2.6" height="${h}" rx="1.2" fill="${pFill}" stroke="${pStroke}" stroke-width="0.4" />`;
       }
-      return `<rect x="${x}" y="${y}" width="${w}" height="2.5" rx="1.2" fill="#334155" />`;
+      return `<rect x="${x}" y="${y}" width="${w}" height="2.6" rx="1.2" fill="${pFill}" stroke="${pStroke}" stroke-width="0.4" />`;
     }
 
-    function renderDrawersGroup(item, rx, ry, rw, rh, frontFill, handleType) {
-      const count = Math.max(1, Number(item.drawers) || 1);
-      const dir = item.drawerDir || 'horizontal'; // 'horizontal' = empilhadas | 'vertical' = lado a lado
+    function renderDoorsBlock(doorsCount, x, y, w, h, frontFill, doorType, handleType, profColor) {
+      if (doorsCount <= 0 || w < 4 || h < 6) return '';
       let svg = '';
+      const isGlassFrame = handleType === 'perfil_vidro';
+      const pFill = profColor ? profColor.hex : '#94a3b8';
+      const pStroke = profColor ? profColor.stroke : '#334155';
 
-      if (dir === 'vertical') {
-        // GAVETAS VERTICAIS (LADO A LADO / EM LINHA)
-        const colW = rw / count;
-        for (let i = 0; i < count; i++) {
-          const gx = rx + i * colW;
-          svg += `<rect x="${gx + 1.2}" y="${ry + 1.2}" width="${Math.max(2, colW - 2.4)}" height="${Math.max(2, rh - 2.4)}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />`;
-          // Puxador centralizado no topo ou meio da gaveta vertical
-          const hw = Math.min(24, colW * 0.42);
-          const hx = gx + (colW - hw) / 2;
-          const hy = handleType === 'perfil' || handleType === 'cava' ? ry + 1.5 : ry + rh * 0.28;
-          svg += renderHandleGraphic(handleType, hx, hy, hw, 3, 'horizontal');
+      if (doorType === 'basculante') {
+        const bH = h / doorsCount;
+        for (let i = 0; i < doorsCount; i++) {
+          const py = y + i * bH;
+          svg += `<rect x="${x + 1.3}" y="${py + 1.3}" width="${Math.max(2, w - 2.6)}" height="${Math.max(2, bH - 2.6)}" fill="${frontFill}" stroke="${isGlassFrame ? pStroke : '#0f172a'}" stroke-width="${isGlassFrame ? '1.8' : '1.1'}" />`;
+          if (isGlassFrame) {
+            svg += `<rect x="${x + 2.5}" y="${py + 2.5}" width="${Math.max(1, w - 5)}" height="${Math.max(1, bH - 5)}" fill="none" stroke="${pFill}" stroke-width="1.3" />`;
+          }
+          svg += `<polyline points="${x + 4},${py + bH - 3} ${x + w / 2},${py + 4} ${x + w - 4},${py + bH - 3}" fill="none" stroke="#334155" stroke-width="0.7" stroke-dasharray="3,2" opacity="0.55" />`;
+          const isFullPerfil = handleType === 'perfil_gola' || handleType === 'perfil_puxador' || handleType === 'perfil';
+          const hw = isFullPerfil ? Math.max(4, w - 4) : Math.min(34, w * 0.26);
+          const hx = isFullPerfil ? x + 2 : x + (w - hw) / 2;
+          svg += renderHandleGraphic(handleType, hx, py + bH - 4.8, hw, 2.8, 'horizontal', profColor);
         }
       } else {
-        // GAVETAS HORIZONTAIS (EMPILHADAS / DEITADAS UMA SOBRE A OUTRA)
-        const rowH = rh / count;
-        for (let i = 0; i < count; i++) {
+        const dW = w / doorsCount;
+        for (let i = 0; i < doorsCount; i++) {
+          const px = x + i * dW;
+          const overlap = doorType === 'correr' && i % 2 === 1 ? 1.8 : 0;
+          const doorX = px + 1.2 - overlap;
+          const doorW = Math.max(2, dW - 2.4 + overlap);
+          const doorH = Math.max(2, h - 2.4);
+
+          svg += `<rect x="${doorX}" y="${y + 1.2}" width="${doorW}" height="${doorH}" fill="${frontFill}" stroke="${isGlassFrame ? pStroke : '#0f172a'}" stroke-width="${isGlassFrame ? '1.8' : '1.1'}" />`;
+
+          if (isGlassFrame && doorW > 6 && doorH > 6) {
+            svg += `<rect x="${doorX + 1.6}" y="${y + 2.8}" width="${doorW - 3.2}" height="${doorH - 3.2}" fill="none" stroke="${pFill}" stroke-width="1.4" />`;
+          }
+
+          if (doorType === 'correr') {
+            const arrowY = y + h * 0.5;
+            const cx = px + dW / 2;
+            const dirSign = i % 2 === 0 ? 1 : -1;
+            const aLen = Math.min(6, dW * 0.25);
+            svg += `<line x1="${cx - aLen * dirSign}" y1="${arrowY}" x2="${cx + aLen * dirSign}" y2="${arrowY}" stroke="#1e293b" stroke-width="1.1" />`;
+            svg += `<polyline points="${cx + (aLen - 3) * dirSign},${arrowY - 2.5} ${cx + aLen * dirSign},${arrowY} ${cx + (aLen - 3) * dirSign},${arrowY + 2.5}" fill="none" stroke="#1e293b" stroke-width="1.1" />`;
+          }
+
+          const isLeft = i % 2 === 0;
+          const isFullPerfil = handleType === 'perfil_gola' || handleType === 'perfil_puxador' || handleType === 'perfil';
+          const hx = isFullPerfil
+            ? (isLeft ? px + dW - 4.4 : px + 1.5)
+            : (isLeft ? px + dW - 6 : px + 3.5);
+          const hh = isFullPerfil ? Math.max(4, h - 3.6) : Math.min(24, h * 0.32);
+          const hy = isFullPerfil ? y + 1.8 : y + (h - hh) / 2;
+          svg += renderHandleGraphic(handleType, hx, hy, 2.8, hh, 'vertical', profColor);
+        }
+      }
+      return svg;
+    }
+
+    function renderDrawersBlock(count, dir, rx, ry, rw, rh, frontFill, handleType, profColor) {
+      const safeCount = Math.max(1, Number(count) || 1);
+      if (rw < 4 || rh < 4) return '';
+      let svg = '';
+      const isFullPerfil = handleType === 'perfil_gola' || handleType === 'perfil_puxador' || handleType === 'perfil' || handleType === 'cava_45' || handleType === 'cava';
+
+      if (dir === 'vertical') {
+        const colW = rw / safeCount;
+        for (let i = 0; i < safeCount; i++) {
+          const gx = rx + i * colW;
+          svg += `<rect x="${gx + 1.1}" y="${ry + 1.1}" width="${Math.max(2, colW - 2.2)}" height="${Math.max(2, rh - 2.2)}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.05" />`;
+          const hw = isFullPerfil ? Math.max(4, colW - 3.2) : Math.min(22, colW * 0.45);
+          const hx = isFullPerfil ? gx + 1.6 : gx + (colW - hw) / 2;
+          const hy = isFullPerfil ? ry + 1.4 : ry + rh * 0.32;
+          svg += renderHandleGraphic(handleType, hx, hy, hw, 2.8, 'horizontal', profColor);
+        }
+      } else {
+        const rowH = rh / safeCount;
+        for (let i = 0; i < safeCount; i++) {
           const gy = ry + i * rowH;
-          svg += `<rect x="${rx + 1.2}" y="${gy + 1.2}" width="${Math.max(2, rw - 2.4)}" height="${Math.max(2, rowH - 2.4)}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />`;
-          const hw = Math.min(34, rw * 0.24);
-          const hx = rx + (rw - hw) / 2;
-          const hy = handleType === 'perfil' || handleType === 'cava' ? gy + 1.5 : gy + rowH * 0.45;
-          svg += renderHandleGraphic(handleType, hx, hy, hw, 3, 'horizontal');
+          svg += `<rect x="${rx + 1.1}" y="${gy + 1.1}" width="${Math.max(2, rw - 2.2)}" height="${Math.max(2, rowH - 2.2)}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.05" />`;
+          const hw = isFullPerfil ? Math.max(4, rw - 3.2) : Math.min(30, rw * 0.34);
+          const hx = isFullPerfil ? rx + 1.6 : rx + (rw - hw) / 2;
+          const hy = isFullPerfil ? gy + 1.4 : gy + rowH * 0.45;
+          svg += renderHandleGraphic(handleType, hx, hy, hw, 2.8, 'horizontal', profColor);
+        }
+      }
+      return svg;
+    }
+
+    function renderInternalColumns(colsCount, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, drawerColIndices = []) {
+      const cols = Math.max(1, colsCount);
+      const colW = drawW / cols;
+      let svg = '';
+      for (let c = 0; c < cols; c++) {
+        const cx = x0 + c * colW;
+        if (c > 0) {
+          svg += `<rect x="${cx - 1.4}" y="${y0}" width="2.8" height="${bodyH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="0.9" />`;
+        }
+        const hasDrawersHere = drawerColIndices.includes(c);
+        if (hasDrawersHere) {
+          // Prateleiras superiores + caixotes internos de gavetas embaixo
+          const splitY = H_cm > 140 ? y0 + bodyH * 0.54 : y0 + 2;
+          if (H_cm > 140) {
+            svg += `<line x1="${cx}" y1="${splitY}" x2="${cx + colW}" y2="${splitY}" stroke="#0f172a" stroke-width="1.8" />`;
+            svg += `<line x1="${cx}" y1="${y0 + bodyH * 0.27}" x2="${cx + colW}" y2="${y0 + bodyH * 0.27}" stroke="#0f172a" stroke-width="1.5" />`;
+          }
+          const boxZoneH = (y0 + bodyH) - splitY;
+          for (let g = 1; g <= 3; g++) {
+            const gy = splitY + (boxZoneH / 4) * g;
+            svg += `<line x1="${cx + 3}" y1="${gy}" x2="${cx + colW - 3}" y2="${gy}" stroke="#64748b" stroke-width="1.3" stroke-dasharray="3,2" />`;
+          }
+        } else if (H_cm >= 155 && c === 0) {
+          // Maleiro + Cabideiro
+          const maleiroY = y0 + bodyH * 0.22;
+          svg += `<line x1="${cx}" y1="${maleiroY}" x2="${cx + colW}" y2="${maleiroY}" stroke="#0f172a" stroke-width="1.9" />`;
+          svg += `<line x1="${cx + 4}" y1="${maleiroY + 10}" x2="${cx + colW - 4}" y2="${maleiroY + 10}" stroke="#64748b" stroke-width="2.3" stroke-linecap="round" />`;
+        } else {
+          const stepY = bodyH / (shelvesCount + 1);
+          for (let s = 1; s <= shelvesCount; s++) {
+            const sy = y0 + s * stepY;
+            svg += `<line x1="${cx}" y1="${sy}" x2="${cx + colW}" y2="${sy}" stroke="#0f172a" stroke-width="1.6" />`;
+          }
         }
       }
       return svg;
@@ -998,16 +1207,170 @@
       const uid = 'u' + Math.random().toString(36).substring(2, 8);
       const bodyMdf = getMdfInfo(item.bodyColor);
       const frontMdf = getMdfInfo(item.frontColor);
+      const profColor = getProfileColorInfo(item.profileColor);
       const bodyFill = `url(#body_${uid})`;
       const frontFill = `url(#front_${uid})`;
 
       const isInternal = forceInternal || !!item.internalView;
       const W_cm = Math.max(10, Number(item.width) || 100);
+      const W2_cm = Math.max(20, Number(item.width2) || 180);
       const H_cm = Math.max(10, Number(item.height) || 100);
       const D_cm = Math.max(5, Number(item.depth) || 40);
 
       const svgW = 400;
       const svgH = 265;
+      const ledMode = item.led || 'none';
+      const mountMode = item.mount || 'rodape';
+      const doorType = item.doorType || 'giro';
+      const handleType = item.handle || 'perfil_puxador';
+      const drawerPos = item.drawerPos || 'lateral_dir';
+      const drawerDir = item.drawerDir || 'horizontal';
+
+      // ===================================================================
+      // ARQUÉTIPO ESPECIAL: GUARDA-ROUPA / ARMÁRIO EM L (CANTO)
+      // ===================================================================
+      if (item.type === 'armario_l') {
+        const bodyH = Math.min(158, Math.max(92, (H_cm / 240) * 145));
+        const baseH = mountMode === 'rodape' ? 8 : (mountMode === 'pes' ? 11 : 0);
+        const totalH = bodyH + baseH;
+        const y0 = Math.round((svgH - totalH) / 2) + 8;
+
+        // Ala Esquerda (Parede A) e Ala Direita (Parede B em perspectiva 2.5D)
+        const totalSpan = W_cm + W2_cm;
+        const wing1W = Math.max(85, Math.min(155, Math.round((W_cm / totalSpan) * 235)));
+        const wing2W = Math.max(85, Math.min(155, Math.round((W2_cm / totalSpan) * 235)));
+        const wing2Dx = Math.round(wing2W * 0.78);
+        const wing2Dy = Math.round(wing2W * 0.28);
+        const depthIso = 18;
+
+        const xStart = Math.round((svgW - (wing1W + wing2Dx)) / 2) + 6;
+        const xCorner = xStart + wing1W;
+        const xEnd = xCorner + wing2Dx;
+
+        let shapes = '';
+
+        // LED halo
+        if (ledMode !== 'none') {
+          const ledCol = ledMode === 'neutro' ? '#bae6fd' : '#fbbf24';
+          shapes += `<polyline points="${xStart - 3},${y0 - 4} ${xCorner},${y0 - 4} ${xEnd + 3},${y0 + wing2Dy - 4}" fill="none" stroke="${ledCol}" stroke-width="5" opacity="0.55" />`;
+        }
+
+        // Topo em L (Teto do móvel mostrando o formato de L)
+        shapes += `
+          <polygon points="${xStart},${y0} ${xStart + depthIso},${y0 - depthIso * 0.75} ${xCorner + depthIso * 1.3},${y0 - depthIso * 0.75} ${xEnd + depthIso * 0.85},${y0 + wing2Dy - depthIso * 0.5} ${xEnd},${y0 + wing2Dy} ${xCorner},${y0}"
+            fill="${bodyFill}" stroke="#0f172a" stroke-width="1.2" />
+        `;
+
+        // Base Rodapé em L
+        if (mountMode === 'rodape') {
+          shapes += `
+            <rect x="${xStart + 3}" y="${y0 + bodyH}" width="${wing1W - 3}" height="${baseH}" fill="#334155" stroke="#0f172a" stroke-width="1" />
+            <polygon points="${xCorner},${y0 + bodyH} ${xEnd - 2},${y0 + bodyH + wing2Dy} ${xEnd - 2},${y0 + totalH + wing2Dy} ${xCorner},${y0 + totalH}" fill="#1e293b" stroke="#0f172a" stroke-width="1" />
+          `;
+        }
+
+        // Corpo Ala Esquerda (Frontal)
+        shapes += `<rect x="${xStart}" y="${y0}" width="${wing1W}" height="${bodyH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.5" />`;
+
+        // Corpo Ala Direita (Perspectiva L 90°)
+        shapes += `
+          <polygon points="${xCorner},${y0} ${xEnd},${y0 + wing2Dy} ${xEnd},${y0 + bodyH + wing2Dy} ${xCorner},${y0 + bodyH}"
+            fill="${bodyFill}" stroke="#0f172a" stroke-width="1.5" />
+          <polygon points="${xCorner},${y0} ${xEnd},${y0 + wing2Dy} ${xEnd},${y0 + bodyH + wing2Dy} ${xCorner},${y0 + bodyH}"
+            fill="#000000" opacity="0.06" />
+        `;
+
+        const totalDoors = Math.max(0, Number(item.doors) || 0);
+        const totalDrawers = Math.max(0, Number(item.drawers) || 0);
+        const doorsLeft = Math.ceil(totalDoors / 2);
+        const doorsRight = Math.floor(totalDoors / 2);
+
+        if (isInternal) {
+          // Vista Interna das 2 alas do L
+          shapes += renderInternalColumns(2, xStart, y0, wing1W, bodyH, bodyFill, H_cm, Number(item.shelves) || 3, []);
+          // Prateleiras na ala direita inclinada
+          const sh = Math.max(2, Number(item.shelves) || 3);
+          for (let s = 1; s <= sh; s++) {
+            const frac = s / (sh + 1);
+            shapes += `<line x1="${xCorner}" y1="${y0 + bodyH * frac}" x2="${xEnd}" y2="${y0 + wing2Dy + bodyH * frac}" stroke="#0f172a" stroke-width="1.4" />`;
+          }
+        } else {
+          // Ala Esquerda: Portas + Gavetas (se houver)
+          if (totalDrawers > 0 && (drawerPos === 'lateral_esq' || drawerPos === 'centro_dividido' || drawerPos === 'base')) {
+            const dZoneH = doorsLeft > 0 ? bodyH * 0.44 : bodyH;
+            const pZoneH = bodyH - dZoneH;
+            if (doorsLeft > 0) {
+              shapes += renderDoorsBlock(doorsLeft, xStart, y0, wing1W, pZoneH, frontFill, doorType, handleType, profColor);
+            }
+            shapes += renderDrawersBlock(totalDrawers, drawerDir, xStart, y0 + pZoneH, wing1W, dZoneH, frontFill, handleType, profColor);
+          } else {
+            shapes += renderDoorsBlock(doorsLeft, xStart, y0, wing1W, bodyH, frontFill, doorType, handleType, profColor);
+          }
+
+          // Ala Direita inclinada (Portas e/ou Gavetas em perspectiva)
+          const rCols = Math.max(1, doorsRight);
+          const hasRightDrawers = totalDrawers > 0 && !(drawerPos === 'lateral_esq' || drawerPos === 'centro_dividido' || drawerPos === 'base');
+          const rDoorFrac = hasRightDrawers ? 0.55 : 1.0;
+
+          for (let c = 0; c < rCols; c++) {
+            const t0 = c / rCols;
+            const t1 = (c + 1) / rCols;
+            const px0 = xCorner + wing2Dx * t0;
+            const py0 = y0 + wing2Dy * t0;
+            const px1 = xCorner + wing2Dx * t1;
+            const py1 = y0 + wing2Dy * t1;
+            const dH = bodyH * rDoorFrac;
+            shapes += `
+              <polygon points="${px0 + 1},${py0 + 1.5} ${px1 - 1},${py1 + 1.5} ${px1 - 1},${py1 + dH - 1} ${px0 + 1},${py0 + dH - 1}"
+                fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />
+            `;
+          }
+          if (hasRightDrawers) {
+            const dCount = Math.max(1, totalDrawers);
+            const startYOff = bodyH * rDoorFrac;
+            const remH = bodyH - startYOff;
+            for (let g = 0; g < dCount; g++) {
+              const gyOff = startYOff + (remH / dCount) * g;
+              const gh = remH / dCount;
+              shapes += `
+                <polygon points="${xCorner + 1.2},${y0 + gyOff + 1} ${xEnd - 1.2},${y0 + wing2Dy + gyOff + 1} ${xEnd - 1.2},${y0 + wing2Dy + gyOff + gh - 1} ${xCorner + 1.2},${y0 + gyOff + gh - 1}"
+                  fill="${frontFill}" stroke="#0f172a" stroke-width="1.05" />
+              `;
+            }
+          }
+        }
+
+        // Cotas Técnicas do L (Altura, L1 Esquerdo, L2 Direito, Profundidade)
+        const cotasL = `
+          <line x1="${xStart - 12}" y1="${y0}" x2="${xStart - 12}" y2="${y0 + totalH}" stroke="#475569" stroke-width="1" />
+          <line x1="${xStart - 16}" y1="${y0}" x2="${xStart - 8}" y2="${y0}" stroke="#475569" stroke-width="1" />
+          <line x1="${xStart - 16}" y1="${y0 + totalH}" x2="${xStart - 8}" y2="${y0 + totalH}" stroke="#475569" stroke-width="1" />
+          <text x="${xStart - 18}" y="${y0 + totalH / 2}" fill="#0f172a" font-family="Courier New, monospace" font-size="10" font-weight="700" text-anchor="middle" transform="rotate(-90, ${xStart - 18}, ${y0 + totalH / 2})">${H_cm} cm</text>
+
+          <line x1="${xStart}" y1="${y0 + totalH + 11}" x2="${xCorner}" y2="${y0 + totalH + 11}" stroke="#475569" stroke-width="1" />
+          <text x="${xStart + wing1W / 2}" y="${y0 + totalH + 22}" fill="#0f172a" font-family="Courier New, monospace" font-size="10" font-weight="700" text-anchor="middle">L1: ${W_cm} cm</text>
+
+          <line x1="${xCorner + 3}" y1="${y0 + totalH + 11}" x2="${xEnd}" y2="${y0 + totalH + wing2Dy + 11}" stroke="#475569" stroke-width="1" />
+          <text x="${xCorner + wing2Dx / 2 + 8}" y="${y0 + totalH + wing2Dy / 2 + 23}" fill="#b45309" font-family="Courier New, monospace" font-size="10" font-weight="700" text-anchor="middle">L2: ${W2_cm} cm</text>
+
+          <text x="${xStart + depthIso + 6}" y="${y0 - depthIso * 0.75 - 4}" fill="#475569" font-family="Courier New, monospace" font-size="9.5" font-weight="700">CANTO EM L • P:${D_cm}cm</text>
+        `;
+
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;max-height:230px;">
+            <defs>
+              ${buildSvgPatternDef('body_' + uid, bodyMdf)}
+              ${buildSvgPatternDef('front_' + uid, frontMdf)}
+            </defs>
+            ${shapes}
+            ${cotasL}
+          </svg>
+        `;
+      }
+
+      // ===================================================================
+      // DEMAIS ARQUÉTIPOS (ARMÁRIO, COZINHA, PAINEL TV, MESA, NICHO)
+      // ===================================================================
       const maxDrawW = 235;
       const maxDrawH = 165;
 
@@ -1021,23 +1384,16 @@
         drawW = maxDrawH * ratio;
       }
 
-      // Projeção isométrica 2.5D de profundidade
-      const depthOffset = Math.min(26, Math.max(10, Math.round((D_cm / 100) * 24)));
+      const depthOffset = Math.min(25, Math.max(10, Math.round((D_cm / 100) * 23)));
       const dx = depthOffset;
       const dy = -Math.round(depthOffset * 0.62);
 
       const x0 = Math.round((svgW - drawW - dx) / 2) + 14;
       const y0 = Math.round((svgH - drawH - dy) / 2) + 6;
 
-      const ledMode = item.led || 'none';
-      const mountMode = item.mount || 'rodape';
-      const doorType = item.doorType || 'giro';
-      const handleType = item.handle || 'perfil';
-      const drawerPos = item.drawerPos || 'base';
-
       let shapes = '';
 
-      // 1. Iluminação LED (Camadas translúcidas seguras para Canvas/PDF sem filtro complexo)
+      // Halo LED
       if (ledMode !== 'none') {
         const ledColor = ledMode === 'neutro' ? '#bae6fd' : '#fbbf24';
         const ledCore = ledMode === 'neutro' ? '#f0f9ff' : '#fef08a';
@@ -1047,12 +1403,10 @@
         `;
       }
 
-      // 2. Sombra de móvel suspenso
       if (mountMode === 'suspenso') {
         shapes += `<ellipse cx="${x0 + drawW / 2}" cy="${y0 + drawH + 9}" rx="${drawW * 0.44}" ry="3.5" fill="#94a3b8" opacity="0.28" />`;
       }
 
-      // 3. Desenho por Arquétipo do Móvel
       if (item.type === 'painel_tv') {
         const panelH = drawH * 0.74;
         const rackH = drawH * 0.24;
@@ -1060,19 +1414,15 @@
         const rackW = drawW * 0.94;
         const rackX = x0 + (drawW - rackW) / 2;
 
-        // Painel principal + lateral 3D
         shapes += `
           <polygon points="${x0 + drawW},${y0} ${x0 + drawW + 7},${y0 - 4} ${x0 + drawW + 7},${y0 + panelH - 4} ${x0 + drawW},${y0 + panelH}" fill="${frontFill}" stroke="#1e293b" stroke-width="1" />
           <rect x="${x0}" y="${y0}" width="${drawW}" height="${panelH}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.4" />
         `;
 
-        // Ripado vertical
-        const stepRipa = 7;
-        for (let rx = x0 + stepRipa; rx < x0 + drawW - 2; rx += stepRipa) {
+        for (let rx = x0 + 7; rx < x0 + drawW - 2; rx += 7) {
           shapes += `<line x1="${rx}" y1="${y0}" x2="${rx}" y2="${y0 + panelH}" stroke="#0f172a" stroke-width="0.7" opacity="0.3" />`;
         }
 
-        // TV central
         const tvW = drawW * 0.54;
         const tvH = panelH * 0.56;
         const tvX = x0 + (drawW - tvW) / 2;
@@ -1082,7 +1432,6 @@
           <polygon points="${tvX + 3},${tvY + 3} ${tvX + tvW * 0.48},${tvY + 3} ${tvX + tvW * 0.25},${tvY + tvH - 3} ${tvX + 3},${tvY + tvH - 3}" fill="#ffffff" opacity="0.09" />
         `;
 
-        // Rack inferior 3D
         shapes += `
           <polygon points="${rackX},${rackY} ${rackX + dx},${rackY + dy} ${rackX + rackW + dx},${rackY + dy} ${rackX + rackW},${rackY}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.1" />
           <polygon points="${rackX + rackW},${rackY} ${rackX + rackW + dx},${rackY + dy} ${rackX + rackW + dx},${rackY + rackH + dy} ${rackX + rackW},${rackY + rackH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.1" />
@@ -1091,19 +1440,19 @@
         `;
 
         const dCount = Number(item.drawers) || 0;
-        if (dCount > 0) {
-          shapes += renderDrawersGroup(item, rackX, rackY, rackW, rackH, frontFill, handleType);
+        const pCount = Number(item.doors) || 0;
+        if (dCount > 0 && pCount > 0) {
+          const halfW = rackW * 0.5;
+          shapes += renderDoorsBlock(pCount, rackX, rackY, halfW, rackH, frontFill, doorType, handleType, profColor);
+          shapes += renderDrawersBlock(dCount, drawerDir, rackX + halfW, rackY, halfW, rackH, frontFill, handleType, profColor);
+        } else if (dCount > 0) {
+          shapes += renderDrawersBlock(dCount, drawerDir, rackX, rackY, rackW, rackH, frontFill, handleType, profColor);
         } else {
-          const cols = Math.max(1, Number(item.doors) || 3);
-          const cw = rackW / cols;
-          for (let c = 0; c < cols; c++) {
-            shapes += `<rect x="${rackX + c * cw + 1.2}" y="${rackY + 1.2}" width="${cw - 2.4}" height="${rackH - 2.4}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />`;
-          }
+          shapes += renderDoorsBlock(Math.max(1, pCount), rackX, rackY, rackW, rackH, frontFill, doorType, handleType, profColor);
         }
 
       } else if (item.type === 'mesa') {
         const topThick = Math.max(8, drawH * 0.11);
-        // Tampo 3D
         shapes += `
           <polygon points="${x0},${y0} ${x0 + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW},${y0}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />
           <polygon points="${x0 + drawW},${y0} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + topThick + dy} ${x0 + drawW},${y0 + topThick}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />
@@ -1120,27 +1469,24 @@
 
         const drawersCount = Number(item.drawers) || 0;
         if (drawersCount > 0) {
-          if (item.drawerDir === 'vertical') {
-            // Gavetas sob o tampo lado a lado
+          if (drawerDir === 'vertical') {
             const underH = Math.min(legH * 0.34, 28);
             const underW = drawW - legW * 2 - 10;
             const underX = x0 + 5 + legW;
             const underY = y0 + topThick;
             shapes += `<rect x="${underX}" y="${underY}" width="${underW}" height="${underH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.2" />`;
-            shapes += renderDrawersGroup(item, underX, underY, underW, underH, frontFill, handleType);
+            shapes += renderDrawersBlock(drawersCount, 'vertical', underX, underY, underW, underH, frontFill, handleType, profColor);
           } else {
-            // Gaveteiro lateral empilhado
             const pedW = Math.min(drawW * 0.35, 76);
             const pedH = Math.min(legH * 0.84, drawersCount * 22);
-            const pedX = x0 + drawW - legW - 5 - pedW;
+            const pedX = drawerPos === 'lateral_esq' ? x0 + 5 + legW : x0 + drawW - legW - 5 - pedW;
             const pedY = y0 + topThick;
             shapes += `<rect x="${pedX}" y="${pedY}" width="${pedW}" height="${pedH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.3" />`;
-            shapes += renderDrawersGroup(item, pedX, pedY, pedW, pedH, frontFill, handleType);
+            shapes += renderDrawersBlock(drawersCount, 'horizontal', pedX, pedY, pedW, pedH, frontFill, handleType, profColor);
           }
         }
 
       } else if (item.type === 'nicho') {
-        // Estante / Nichos
         shapes += `
           <polygon points="${x0},${y0} ${x0 + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW},${y0}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.1" />
           <polygon points="${x0 + drawW},${y0} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + drawH + dy} ${x0 + drawW},${y0 + drawH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.1" />
@@ -1165,21 +1511,20 @@
         }
 
       } else {
-        // --- ARMÁRIO / GUARDA-ROUPA / BALCÃO ---
+        // =================================================================
+        // GUARDA-ROUPA / ARMÁRIO / BALCÃO DE COZINHA (COM DIVISÕES REAIS!)
+        // =================================================================
         let baseH = 0;
         if (mountMode === 'rodape') baseH = Math.min(10, drawH * 0.06);
         if (mountMode === 'pes') baseH = Math.min(14, drawH * 0.09);
         const bodyH = drawH - baseH;
 
-        // Faces 3D (Topo + Lateral Direita com sombreamento realista)
         shapes += `
           <polygon points="${x0},${y0} ${x0 + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW},${y0}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.1" />
-          <polygon points="${x0},${y0} ${x0 + dx},${y0 + dy} ${x0 + dx},${y0 + bodyH + dy} ${x0},${y0 + bodyH}" fill="#ffffff" opacity="0.08" />
           <polygon points="${x0 + drawW},${y0} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + bodyH + dy} ${x0 + drawW},${y0 + bodyH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.1" />
           <polygon points="${x0 + drawW},${y0} ${x0 + drawW + dx},${y0 + dy} ${x0 + drawW + dx},${y0 + bodyH + dy} ${x0 + drawW},${y0 + bodyH}" fill="#000000" opacity="0.16" />
         `;
 
-        // Base (Rodapé ou Pés)
         if (mountMode === 'rodape') {
           shapes += `<rect x="${x0 + 4}" y="${y0 + bodyH}" width="${drawW - 8}" height="${baseH}" fill="#334155" stroke="#0f172a" stroke-width="1" />`;
         } else if (mountMode === 'pes') {
@@ -1189,115 +1534,163 @@
           `;
         }
 
-        // Caixa principal
         shapes += `<rect x="${x0}" y="${y0}" width="${drawW}" height="${bodyH}" fill="${bodyFill}" stroke="#0f172a" stroke-width="1.5" />`;
 
+        const doorsCount = Math.max(0, Number(item.doors) || 0);
+        const drawersCount = Math.max(0, Number(item.drawers) || 0);
+        const shelvesCount = Math.max(1, Number(item.shelves) || 3);
+
         if (isInternal) {
-          // ===============================================================
-          // VISTA INTERNA (RAIO-X): Prateleiras, Divisórias e Cabideiro
-          // ===============================================================
-          const pad = 4;
-          shapes += `<rect x="${x0 + pad}" y="${y0 + pad}" width="${drawW - pad * 2}" height="${bodyH - pad * 2}" fill="${bodyFill}" stroke="#475569" stroke-width="1" />`;
-
-          const cols = Math.max(1, Math.min(4, Math.ceil((Number(item.doors) || 2) / 2)));
-          const colW = (drawW - pad * 2) / cols;
-          const shelvesCount = Math.max(1, Number(item.shelves) || 3);
-
-          for (let c = 0; c < cols; c++) {
-            const cx = x0 + pad + c * colW;
-            if (c > 0) {
-              shapes += `<rect x="${cx - 1.5}" y="${y0 + pad}" width="3" height="${bodyH - pad * 2}" fill="${bodyFill}" stroke="#0f172a" stroke-width="0.9" />`;
-            }
-            if (H_cm >= 145 && c === 0) {
-              // Vão de Cabideiro + Maleiro
-              const maleiroY = y0 + pad + (bodyH - pad * 2) * 0.22;
-              shapes += `<line x1="${cx}" y1="${maleiroY}" x2="${cx + colW}" y2="${maleiroY}" stroke="#0f172a" stroke-width="2" />`;
-              shapes += `<line x1="${cx + 4}" y1="${maleiroY + 10}" x2="${cx + colW - 4}" y2="${maleiroY + 10}" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" />`;
-            } else {
-              const stepY = (bodyH - pad * 2) / (shelvesCount + 1);
-              for (let s = 1; s <= shelvesCount; s++) {
-                const sy = y0 + pad + s * stepY;
-                shapes += `<line x1="${cx}" y1="${sy}" x2="${cx + colW}" y2="${sy}" stroke="#0f172a" stroke-width="1.8" />`;
-              }
-            }
+          // VISTA INTERNA ALINHADA COM O LAYOUT DE GAVETAS ESCOLHIDO
+          if (drawersCount === 0) {
+            const cols = Math.max(1, Math.min(4, Math.ceil((doorsCount || 2) / 2)));
+            shapes += renderInternalColumns(cols, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, []);
+          } else if (drawerPos === 'lateral_dir') {
+            shapes += renderInternalColumns(2, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, [1]);
+          } else if (drawerPos === 'lateral_esq') {
+            shapes += renderInternalColumns(2, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, [0]);
+          } else if (drawerPos === 'centro_dividido') {
+            shapes += renderInternalColumns(3, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, [1]);
+          } else if (drawerPos === 'duas_etapas') {
+            shapes += renderInternalColumns(3, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, [0, 2]);
+          } else if (drawerPos === 'tres_etapas') {
+            shapes += renderInternalColumns(3, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, [0, 1, 2]);
+          } else {
+            const cols = Math.max(1, Math.min(3, Math.ceil((doorsCount || 2) / 2)));
+            shapes += renderInternalColumns(cols, x0, y0, drawW, bodyH, bodyFill, H_cm, shelvesCount, [0]);
           }
         } else {
           // ===============================================================
-          // VISTA EXTERNA: Portas + Gavetas (Base ou Topo / Horiz. ou Vert.)
+          // VISTA EXTERNA — TODAS AS DIVISÕES REAIS DE MARCENARIA
           // ===============================================================
-          const doorsCount = Math.max(0, Number(item.doors) || 0);
-          const drawersCount = Math.max(0, Number(item.drawers) || 0);
-
-          let drawerZoneH = 0;
-          if (drawersCount > 0) {
-            if (item.drawerDir === 'vertical') {
-              drawerZoneH = doorsCount > 0 ? Math.min(bodyH * 0.34, 34) : bodyH;
+          if (drawersCount === 0) {
+            if (doorsCount > 0) {
+              shapes += renderDoorsBlock(doorsCount, x0, y0, drawW, bodyH, frontFill, doorType, handleType, profColor);
             } else {
-              drawerZoneH = doorsCount > 0 ? Math.min(bodyH * 0.52, drawersCount * 20) : bodyH;
-            }
-          }
-          const doorZoneH = bodyH - drawerZoneH;
-
-          const drawerStartY = drawerPos === 'topo' ? y0 : y0 + doorZoneH;
-          const doorStartY = drawerPos === 'topo' ? y0 + drawerZoneH : y0;
-
-          // Desenhar Portas
-          if (doorsCount > 0 && doorZoneH > 10) {
-            if (doorType === 'basculante') {
-              // Portas Basculantes Horizontais
-              const bH = doorZoneH / doorsCount;
-              for (let i = 0; i < doorsCount; i++) {
-                const py = doorStartY + i * bH;
-                shapes += `<rect x="${x0 + 1.4}" y="${py + 1.4}" width="${drawW - 2.8}" height="${bH - 2.8}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />`;
-                // Linhas pontilhadas de abertura basculante
-                shapes += `<polyline points="${x0 + 4},${py + bH - 3} ${x0 + drawW / 2},${py + 4} ${x0 + drawW - 4},${py + bH - 3}" fill="none" stroke="#334155" stroke-width="0.7" stroke-dasharray="3,2" opacity="0.55" />`;
-                const hw = Math.min(34, drawW * 0.24);
-                shapes += renderHandleGraphic(handleType, x0 + (drawW - hw) / 2, py + bH - 5, hw, 2.5, 'horizontal');
-              }
-            } else {
-              // Portas Verticais (Giro ou Correr)
-              const dW = drawW / doorsCount;
-              for (let i = 0; i < doorsCount; i++) {
-                const px = x0 + i * dW;
-                const overlap = doorType === 'correr' && i % 2 === 1 ? 2 : 0;
-                shapes += `<rect x="${px + 1.3 - overlap}" y="${doorStartY + 1.3}" width="${dW - 2.6 + overlap}" height="${doorZoneH - 2.6}" fill="${frontFill}" stroke="#0f172a" stroke-width="1.1" />`;
-
-                if (doorType === 'correr') {
-                  // Seta indicativa de porta de correr
-                  const arrowY = doorStartY + doorZoneH * 0.5;
-                  const cx = px + dW / 2;
-                  const dirSign = i % 2 === 0 ? 1 : -1;
-                  shapes += `<line x1="${cx - 7 * dirSign}" y1="${arrowY}" x2="${cx + 7 * dirSign}" y2="${arrowY}" stroke="#1e293b" stroke-width="1.2" />`;
-                  shapes += `<polyline points="${cx + 3 * dirSign},${arrowY - 3} ${cx + 7 * dirSign},${arrowY} ${cx + 3 * dirSign},${arrowY + 3}" fill="none" stroke="#1e293b" stroke-width="1.2" />`;
-                }
-
-                // Puxador vertical
-                const isLeft = i % 2 === 0;
-                const hx = handleType === 'perfil'
-                  ? (isLeft ? px + dW - 4.5 : px + 1.8)
-                  : (isLeft ? px + dW - 6.5 : px + 4);
-                const hh = handleType === 'perfil' ? doorZoneH - 4 : Math.min(26, doorZoneH * 0.34);
-                const hy = handleType === 'perfil' ? doorStartY + 2 : doorStartY + (doorZoneH - hh) / 2;
-                shapes += renderHandleGraphic(handleType, hx, hy, 2.5, hh, 'vertical');
+              const shStep = bodyH / shelvesCount;
+              for (let s = 1; s < shelvesCount; s++) {
+                shapes += `<line x1="${x0 + 2}" y1="${y0 + s * shStep}" x2="${x0 + drawW - 2}" y2="${y0 + s * shStep}" stroke="#0f172a" stroke-width="1.3" />`;
               }
             }
-          } else if (doorsCount === 0 && doorZoneH > 10) {
-            // Prateleiras abertas
-            const shCount = Math.max(1, Number(item.shelves) || 2);
-            const shStep = doorZoneH / shCount;
-            for (let s = 1; s < shCount; s++) {
-              shapes += `<line x1="${x0 + 2}" y1="${doorStartY + s * shStep}" x2="${x0 + drawW - 2}" y2="${doorStartY + s * shStep}" stroke="#0f172a" stroke-width="1.3" />`;
-            }
-          }
 
-          // Desenhar Gavetas
-          if (drawersCount > 0 && drawerZoneH > 8) {
-            shapes += renderDrawersGroup(item, x0, drawerStartY, drawW, drawerZoneH, frontFill, handleType);
+          } else if (drawerPos === 'lateral_dir' || drawerPos === 'lateral_esq') {
+            // GAVETEIRO AO LADO DAS PORTAS (Cozinha 3P + 4G ou Guarda-Roupa c/ Gaveteiro Lateral)
+            if (doorsCount === 0) {
+              shapes += renderDrawersBlock(drawersCount, drawerDir, x0, y0, drawW, bodyH, frontFill, handleType, profColor);
+            } else {
+              const drawerColW = Math.max(drawW * 0.25, Math.min(drawW * 0.42, drawW / (doorsCount + 1)));
+              const doorColW = drawW - drawerColW;
+              const isLeftDrawer = drawerPos === 'lateral_esq';
+              const dX = isLeftDrawer ? x0 : x0 + doorColW;
+              const pX = isLeftDrawer ? x0 + drawerColW : x0;
+
+              // Portas ocupam toda a altura na área de portas
+              shapes += renderDoorsBlock(doorsCount, pX, y0, doorColW, bodyH, frontFill, doorType, handleType, profColor);
+
+              // Se for módulo alto (> 150cm), coloca 1 porta superior acima do gaveteiro; se for balcão (<= 150cm), gavetas ocupam toda a altura!
+              if (H_cm > 150) {
+                const topDoorH = bodyH * 0.54;
+                const dBankH = bodyH - topDoorH;
+                shapes += renderDoorsBlock(1, dX, y0, drawerColW, topDoorH, frontFill, doorType, handleType, profColor);
+                shapes += renderDrawersBlock(drawersCount, drawerDir, dX, y0 + topDoorH, drawerColW, dBankH, frontFill, handleType, profColor);
+              } else {
+                shapes += renderDrawersBlock(drawersCount, drawerDir, dX, y0, drawerColW, bodyH, frontFill, handleType, profColor);
+              }
+            }
+
+          } else if (drawerPos === 'centro_dividido') {
+            // GUARDA-ROUPA DIVIDIDO NO MEIO: Portas Inteiras nas Pontas + Portas & Gavetas no Centro!
+            const leftW = drawW * 0.31;
+            const centerW = drawW * 0.38;
+            const rightW = drawW * 0.31;
+
+            const leftDoors = doorsCount >= 4 ? Math.max(1, Math.floor(doorsCount / 3)) : (doorsCount >= 2 ? 1 : 0);
+            const rightDoors = doorsCount >= 4 ? Math.max(1, Math.floor(doorsCount / 3)) : (doorsCount >= 3 ? 1 : 0);
+            const centerDoors = Math.max(0, doorsCount - leftDoors - rightDoors);
+
+            // Coluna Esquerda: Portas Inteiras
+            if (leftDoors > 0) {
+              shapes += renderDoorsBlock(leftDoors, x0, y0, leftW, bodyH, frontFill, doorType, handleType, profColor);
+            }
+            // Coluna Direita: Portas Inteiras
+            if (rightDoors > 0) {
+              shapes += renderDoorsBlock(rightDoors, x0 + leftW + centerW, y0, rightW, bodyH, frontFill, doorType, handleType, profColor);
+            }
+            // Coluna Central: Portas em cima + Gavetas proporcionais no meio!
+            const cX = x0 + leftW;
+            const dZoneH = centerDoors > 0 ? Math.min(bodyH * 0.48, Math.max(36, drawersCount * 15)) : bodyH;
+            const pZoneH = bodyH - dZoneH;
+            if (centerDoors > 0 && pZoneH > 10) {
+              shapes += renderDoorsBlock(centerDoors, cX, y0, centerW, pZoneH, frontFill, doorType, handleType, profColor);
+            }
+            shapes += renderDrawersBlock(drawersCount, drawerDir, cX, y0 + pZoneH, centerW, dZoneH, frontFill, handleType, profColor);
+
+          } else if (drawerPos === 'duas_etapas') {
+            // 2 ETAPAS DE GAVETAS (Gavetas nas 2 Pontas + Portas Inteiras no Meio!)
+            const sideW = drawW * 0.28;
+            const midW = drawW - sideW * 2;
+            const dLeft = Math.ceil(drawersCount / 2);
+            const dRight = Math.max(1, Math.floor(drawersCount / 2));
+
+            // Centro: Portas Inteiras
+            if (doorsCount > 0) {
+              shapes += renderDoorsBlock(doorsCount, x0 + sideW, y0, midW, bodyH, frontFill, doorType, handleType, profColor);
+            }
+
+            // Pontas Esquerda e Direita: Gavetas (com porta superior se módulo alto)
+            if (H_cm > 145 && doorsCount > 0) {
+              const pH = bodyH * 0.54;
+              const dH = bodyH - pH;
+              shapes += renderDoorsBlock(1, x0, y0, sideW, pH, frontFill, doorType, handleType, profColor);
+              shapes += renderDrawersBlock(dLeft, drawerDir, x0, y0 + pH, sideW, dH, frontFill, handleType, profColor);
+
+              shapes += renderDoorsBlock(1, x0 + sideW + midW, y0, sideW, pH, frontFill, doorType, handleType, profColor);
+              shapes += renderDrawersBlock(dRight, drawerDir, x0 + sideW + midW, y0 + pH, sideW, dH, frontFill, handleType, profColor);
+            } else {
+              shapes += renderDrawersBlock(dLeft, drawerDir, x0, y0, sideW, bodyH, frontFill, handleType, profColor);
+              shapes += renderDrawersBlock(dRight, drawerDir, x0 + sideW + midW, y0, sideW, bodyH, frontFill, handleType, profColor);
+            }
+
+          } else if (drawerPos === 'tres_etapas') {
+            // 3 ETAPAS / 3 COLUNAS DE GAVETAS LADO A LADO
+            const colW = drawW / 3;
+            const basePerCol = Math.floor(drawersCount / 3);
+            const rem = drawersCount % 3;
+            const counts = [
+              Math.max(1, basePerCol + (rem > 0 ? 1 : 0)),
+              Math.max(1, basePerCol + (rem > 1 ? 1 : 0)),
+              Math.max(1, basePerCol)
+            ];
+            const doorsPerCol = doorsCount > 0 ? Math.max(1, Math.round(doorsCount / 3)) : 0;
+
+            for (let c = 0; c < 3; c++) {
+              const cx = x0 + c * colW;
+              if (doorsPerCol > 0) {
+                const pH = bodyH * 0.54;
+                const dH = bodyH - pH;
+                shapes += renderDoorsBlock(doorsPerCol, cx, y0, colW, pH, frontFill, doorType, handleType, profColor);
+                shapes += renderDrawersBlock(counts[c], drawerDir, cx, y0 + pH, colW, dH, frontFill, handleType, profColor);
+              } else {
+                shapes += renderDrawersBlock(counts[c], drawerDir, cx, y0, colW, bodyH, frontFill, handleType, profColor);
+              }
+            }
+
+          } else {
+            // BASE OU TOPO (TODA A LARGURA)
+            let drawerZoneH = doorsCount > 0 ? Math.min(bodyH * 0.48, Math.max(30, drawersCount * 17)) : bodyH;
+            const doorZoneH = bodyH - drawerZoneH;
+            const drawerStartY = drawerPos === 'topo' ? y0 : y0 + doorZoneH;
+            const doorStartY = drawerPos === 'topo' ? y0 + drawerZoneH : y0;
+
+            if (doorsCount > 0 && doorZoneH > 10) {
+              shapes += renderDoorsBlock(doorsCount, x0, doorStartY, drawW, doorZoneH, frontFill, doorType, handleType, profColor);
+            }
+            shapes += renderDrawersBlock(drawersCount, drawerDir, x0, drawerStartY, drawW, drawerZoneH, frontFill, handleType, profColor);
           }
         }
       }
 
-      // 4. COTAS TÉCNICAS (ALTURA, LARGURA, PROFUNDIDADE)
+      // COTAS TÉCNICAS (ALTURA, LARGURA, PROFUNDIDADE)
       const cotaAltura = `
         <line x1="${x0 - 13}" y1="${y0}" x2="${x0 - 13}" y2="${y0 + drawH}" stroke="#475569" stroke-width="1" />
         <line x1="${x0 - 17}" y1="${y0}" x2="${x0 - 9}" y2="${y0}" stroke="#475569" stroke-width="1" />
@@ -1318,7 +1711,6 @@
         <text x="${x0 + drawW + dx + 6}" y="${y0 + dy - 3}" fill="#475569" font-family="Courier New, monospace" font-size="9.5" font-weight="700">P:${D_cm}cm</text>
       `;
 
-      // Selos superiores
       let topBadges = '';
       if (isInternal) {
         topBadges += `
@@ -1337,7 +1729,7 @@
       }
 
       return `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;max-height:235px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;max-height:230px;">
           <defs>
             ${buildSvgPatternDef('body_' + uid, bodyMdf)}
             ${buildSvgPatternDef('front_' + uid, frontMdf)}
@@ -1353,11 +1745,14 @@
 
     function renderFurnitureVisualWrapper(item, forceInternal = false, clickableZoom = false) {
       if (item.customPhoto) {
+        const dimTxt = item.type === 'armario_l'
+          ? `L1:${item.width} × L2:${item.width2 || 180} × A:${item.height} × P:${item.depth} cm`
+          : `L:${item.width} × A:${item.height} × P:${item.depth} cm`;
         return `
           <div class="w-full flex flex-col items-center justify-center bg-slate-50 rounded-xl p-2 border border-slate-200">
             <img src="${item.customPhoto}" alt="${escapeHtml(item.name)}" class="max-h-48 w-auto max-w-full object-contain rounded-lg" />
             <span class="mt-1.5 text-[10px] font-mono-tech font-bold text-slate-600 bg-white px-2.5 py-0.5 rounded-full border border-slate-200">
-              L:${item.width} × A:${item.height} × P:${item.depth} cm
+              ${dimTxt}
             </span>
           </div>
         `;
@@ -1368,7 +1763,7 @@
         return `
           <div onclick="openZoomModal('${item.id}')" class="w-full cursor-pointer group relative flex items-center justify-center">
             ${svgHtml}
-            <span class="absolute top-1 right-1 bg-slate-900/75 text-white text-[10px] font-bold px-2 py-0.5 rounded-full opacity-80 group-hover:opacity-100">
+            <span class="absolute top-1 right-1 bg-slate-900/75 text-white text-[10px] font-bold px-2 py-0.5 rounded-full opacity-85 group-hover:opacity-100">
               🔍 Ampliar
             </span>
           </div>
@@ -1400,7 +1795,7 @@
             </div>
             <div class="max-w-md mx-auto space-y-1.5">
               <h3 class="text-base sm:text-lg font-extrabold text-slate-900">Nenhum móvel montado ainda</h3>
-              <p class="text-xs sm:text-sm text-slate-500">Toque no botão abaixo para configurar o primeiro móvel com medidas, cores de MDF e disposição das gavetas.</p>
+              <p class="text-xs sm:text-sm text-slate-500">Toque no botão abaixo para configurar armários, cozinhas com gavetas laterais, guarda-roupas em L, perfis e gerar o PDF.</p>
             </div>
             <div class="pt-1">
               <button type="button" onclick="openItemEditor(null)" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-extrabold text-sm shadow-lg shadow-orange-600/25 inline-flex items-center gap-2 active:scale-[0.98] transition">
@@ -1422,7 +1817,10 @@
       container.innerHTML = currentQuote.items.map((item, idx) => {
         const bodyMdf = getMdfInfo(item.bodyColor);
         const frontMdf = getMdfInfo(item.frontColor);
-        const drawerDirLabel = item.drawerDir === 'vertical' ? 'Verticais (Lado a Lado)' : 'Horizontais (Empilhadas)';
+        const profColor = getProfileColorInfo(item.profileColor);
+        const drawerLayoutTxt = item.drawers > 0
+          ? `${item.drawers} (${DRAWER_POS_LABELS[item.drawerPos] || 'Na Base'})`
+          : 'Sem gavetas';
 
         return `
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col justify-between min-w-0">
@@ -1461,10 +1859,10 @@
                   </span>
                 </div>
 
-                <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-600 bg-slate-50 p-2 rounded-xl border border-slate-200/70">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-200/70">
                   <div><strong>Portas:</strong> ${item.doors > 0 ? `${item.doors} (${DOOR_TYPE_LABELS[item.doorType] || 'Giro'})` : 'Sem portas'}</div>
-                  <div><strong>Gavetas:</strong> ${item.drawers > 0 ? `${item.drawers} ${drawerDirLabel}` : 'Sem gavetas'}</div>
-                  <div><strong>Puxador:</strong> ${HANDLE_LABELS[item.handle] || 'Perfil'}</div>
+                  <div><strong>Gavetas:</strong> ${drawerLayoutTxt}</div>
+                  <div><strong>Perfil/Pux.:</strong> ${HANDLE_LABELS[item.handle] || 'Perfil'} (${profColor.name})</div>
                   <div><strong>Fixação:</strong> ${MOUNT_LABELS[item.mount] || 'Rodapé'}</div>
                 </div>
               </div>
@@ -1516,7 +1914,7 @@
     }
 
     /**
-     * 7. EDITOR VISUAL DO MÓVEL
+     * 7. EDITOR VISUAL DO MÓVEL + ATALHOS RÁPIDOS EM 1 TOQUE
      */
     function initColorSwatches() {
       const bodyContainer = document.getElementById('swatch-body-container');
@@ -1535,6 +1933,145 @@
       `).join('');
     }
 
+    function applyQuickPreset(presetKey) {
+      const presets = {
+        cozinha_balcao: {
+          name: 'Balcão Inferior Cozinha',
+          room: 'Cozinha',
+          type: 'cozinha',
+          width: 180,
+          width2: 180,
+          height: 88,
+          depth: 58,
+          doors: 3,
+          drawers: 4,
+          shelves: 2,
+          drawerPos: 'lateral_dir',
+          drawerDir: 'horizontal',
+          doorType: 'giro',
+          handle: 'perfil_gola',
+          profileColor: 'preto',
+          mount: 'rodape',
+          led: 'none',
+          bodyColor: 'branco',
+          frontColor: 'freijo'
+        },
+        roupa_centro: {
+          name: 'Guarda-Roupa 6 Portas e 4 Gavetas',
+          room: 'Dormitório',
+          type: 'armario',
+          width: 260,
+          width2: 180,
+          height: 245,
+          depth: 58,
+          doors: 6,
+          drawers: 4,
+          shelves: 4,
+          drawerPos: 'centro_dividido',
+          drawerDir: 'horizontal',
+          doorType: 'giro',
+          handle: 'perfil_puxador',
+          profileColor: 'champanhe',
+          mount: 'rodape',
+          led: 'none',
+          bodyColor: 'branco',
+          frontColor: 'offwhite'
+        },
+        roupa_l: {
+          name: 'Guarda-Roupa de Canto em L',
+          room: 'Suíte Master',
+          type: 'armario_l',
+          width: 220,
+          width2: 180,
+          height: 245,
+          depth: 58,
+          doors: 6,
+          drawers: 4,
+          shelves: 4,
+          drawerPos: 'lateral_esq',
+          drawerDir: 'horizontal',
+          doorType: 'giro',
+          handle: 'perfil_puxador',
+          profileColor: 'dourado',
+          mount: 'rodape',
+          led: 'quente',
+          bodyColor: 'branco',
+          frontColor: 'carvalho'
+        },
+        roupa_3etapas: {
+          name: 'Armário Dividido em 3 Etapas',
+          room: 'Closet',
+          type: 'armario',
+          width: 240,
+          width2: 180,
+          height: 240,
+          depth: 55,
+          doors: 6,
+          drawers: 9,
+          shelves: 4,
+          drawerPos: 'tres_etapas',
+          drawerDir: 'horizontal',
+          doorType: 'giro',
+          handle: 'perfil_gola',
+          profileColor: 'preto',
+          mount: 'rodape',
+          led: 'quente',
+          bodyColor: 'grafite',
+          frontColor: 'freijo'
+        },
+        painel_ripado: {
+          name: 'Painel Ripado + Rack Suspenso',
+          room: 'Sala de Estar',
+          type: 'painel_tv',
+          width: 240,
+          width2: 180,
+          height: 220,
+          depth: 38,
+          doors: 2,
+          drawers: 2,
+          shelves: 2,
+          drawerPos: 'lateral_dir',
+          drawerDir: 'vertical',
+          doorType: 'basculante',
+          handle: 'cava_45',
+          profileColor: 'preto',
+          mount: 'suspenso',
+          led: 'quente',
+          bodyColor: 'grafite',
+          frontColor: 'freijo'
+        }
+      };
+
+      const p = presets[presetKey];
+      if (!p) return;
+
+      document.getElementById('ed-name').value = p.name;
+      document.getElementById('ed-room').value = p.room;
+      document.getElementById('ed-width').value = p.width;
+      document.getElementById('ed-width2').value = p.width2;
+      document.getElementById('ed-height').value = p.height;
+      document.getElementById('ed-depth').value = p.depth;
+      document.getElementById('ed-doors').value = p.doors;
+      document.getElementById('ed-drawers').value = p.drawers;
+      document.getElementById('ed-shelves').value = p.shelves;
+      document.getElementById('ed-drawer-pos').value = p.drawerPos;
+      document.getElementById('ed-drawer-dir').value = p.drawerDir;
+      document.getElementById('ed-door-type').value = p.doorType;
+      document.getElementById('ed-handle').value = p.handle;
+      document.getElementById('ed-profile-color').value = p.profileColor;
+      document.getElementById('ed-mount').value = p.mount;
+      document.getElementById('ed-led').value = p.led;
+      document.getElementById('ed-prof-led').checked = p.led !== 'none';
+      document.getElementById('ed-specs').value = '';
+
+      syncEditorStepperLabels();
+      setEditorType(p.type);
+      selectEditorMdfColor('body', p.bodyColor);
+      selectEditorMdfColor('front', p.frontColor);
+      updateEditorPreview();
+      showToast('Modelo aplicado! Ajuste medidas se desejar.');
+    }
+
     function openItemEditor(itemId) {
       editingItemId = itemId;
       const modal = document.getElementById('item-editor-modal');
@@ -1547,15 +2084,20 @@
         document.getElementById('ed-room').value = item.room || '';
         document.getElementById('ed-qty').value = item.qty || 1;
         document.getElementById('ed-width').value = item.width || 200;
+        document.getElementById('ed-width2').value = item.width2 || 180;
         document.getElementById('ed-height').value = item.height || 220;
         document.getElementById('ed-depth').value = item.depth || 55;
         document.getElementById('ed-doors').value = item.doors ?? 4;
-        document.getElementById('ed-drawers').value = item.drawers ?? 2;
+        document.getElementById('ed-drawers').value = item.drawers ?? 4;
         document.getElementById('ed-shelves').value = item.shelves ?? 3;
         document.getElementById('ed-drawer-dir').value = item.drawerDir || 'horizontal';
-        document.getElementById('ed-drawer-pos').value = item.drawerPos || 'base';
+        document.getElementById('ed-drawer-pos').value = item.drawerPos || 'lateral_dir';
         document.getElementById('ed-door-type').value = item.doorType || 'giro';
-        document.getElementById('ed-handle').value = item.handle || 'perfil';
+        document.getElementById('ed-handle').value = item.handle === 'perfil' ? 'perfil_puxador' : (item.handle || 'perfil_puxador');
+        document.getElementById('ed-profile-color').value = item.profileColor || 'natural';
+        document.getElementById('ed-prof-borda').checked = item.profBorda !== false;
+        document.getElementById('ed-prof-trilho').checked = !!item.profTrilho;
+        document.getElementById('ed-prof-led').checked = !!item.profLed;
         document.getElementById('ed-mount').value = item.mount || 'rodape';
         document.getElementById('ed-led').value = item.led || 'none';
         document.getElementById('ed-specs').value = item.specs || '';
@@ -1573,15 +2115,20 @@
         document.getElementById('ed-room').value = '';
         document.getElementById('ed-qty').value = 1;
         document.getElementById('ed-width').value = 200;
+        document.getElementById('ed-width2').value = 180;
         document.getElementById('ed-height').value = 220;
         document.getElementById('ed-depth').value = 55;
         document.getElementById('ed-doors').value = 4;
-        document.getElementById('ed-drawers').value = 2;
+        document.getElementById('ed-drawers').value = 4;
         document.getElementById('ed-shelves').value = 3;
         document.getElementById('ed-drawer-dir').value = 'horizontal';
-        document.getElementById('ed-drawer-pos').value = 'base';
+        document.getElementById('ed-drawer-pos').value = 'centro_dividido';
         document.getElementById('ed-door-type').value = 'giro';
-        document.getElementById('ed-handle').value = 'perfil';
+        document.getElementById('ed-handle').value = 'perfil_puxador';
+        document.getElementById('ed-profile-color').value = 'natural';
+        document.getElementById('ed-prof-borda').checked = true;
+        document.getElementById('ed-prof-trilho').checked = false;
+        document.getElementById('ed-prof-led').checked = false;
         document.getElementById('ed-mount').value = 'rodape';
         document.getElementById('ed-led').value = 'none';
         document.getElementById('ed-specs').value = '';
@@ -1624,6 +2171,22 @@
       });
 
       const labelDoors = document.getElementById('label-doors');
+      const dimGrid = document.getElementById('dimensions-grid');
+      const boxW2 = document.getElementById('box-width-2');
+      const labelW1 = document.getElementById('label-width-1');
+
+      if (type === 'armario_l') {
+        dimGrid.classList.remove('grid-cols-3');
+        dimGrid.classList.add('grid-cols-2', 'sm:grid-cols-4');
+        boxW2.classList.remove('hidden');
+        labelW1.textContent = 'Lado Esq. (L1)';
+      } else {
+        dimGrid.classList.add('grid-cols-3');
+        dimGrid.classList.remove('grid-cols-2', 'sm:grid-cols-4');
+        boxW2.classList.add('hidden');
+        labelW1.textContent = 'Largura (L)';
+      }
+
       if (type === 'nicho') labelDoors.textContent = 'Colunas';
       else if (type === 'painel_tv') labelDoors.textContent = 'Portas Rack';
       else labelDoors.textContent = 'Portas';
@@ -1693,12 +2256,17 @@
     }
 
     function getDraftItemFromEditor() {
+      const profColorId = document.getElementById('ed-profile-color').value;
+      const profLabelEl = document.getElementById('preview-profile-color-name');
+      if (profLabelEl) profLabelEl.textContent = getProfileColorInfo(profColorId).name;
+
       return {
         name: document.getElementById('ed-name').value.trim() || 'Móvel Planejado Sob Medida',
         room: document.getElementById('ed-room').value.trim() || 'Ambiente',
         qty: Math.max(1, Number(document.getElementById('ed-qty').value) || 1),
         type: editorTempState.type,
         width: Math.max(10, Number(document.getElementById('ed-width').value) || 100),
+        width2: Math.max(20, Number(document.getElementById('ed-width2').value) || 180),
         height: Math.max(10, Number(document.getElementById('ed-height').value) || 100),
         depth: Math.max(5, Number(document.getElementById('ed-depth').value) || 40),
         doors: Number(document.getElementById('ed-doors').value) || 0,
@@ -1708,6 +2276,10 @@
         drawerPos: document.getElementById('ed-drawer-pos').value,
         doorType: document.getElementById('ed-door-type').value,
         handle: document.getElementById('ed-handle').value,
+        profileColor: profColorId,
+        profBorda: document.getElementById('ed-prof-borda').checked,
+        profTrilho: document.getElementById('ed-prof-trilho').checked,
+        profLed: document.getElementById('ed-prof-led').checked,
         mount: document.getElementById('ed-mount').value,
         led: document.getElementById('ed-led').value,
         bodyColor: editorTempState.bodyColor,
@@ -1718,39 +2290,53 @@
       };
     }
 
-    function autoGenerateSpecsText() {
-      const d = getDraftItemFromEditor();
+    function buildTechnicalDescription(d) {
       const bodyName = getMdfInfo(d.bodyColor).name;
       const frontName = getMdfInfo(d.frontColor).name;
+      const profName = getProfileColorInfo(d.profileColor).name;
       const parts = [
         `Estrutura 100% MDF 18mm com caixaria em ${bodyName} e frentes em ${frontName}.`
       ];
-      if (d.doors > 0) parts.push(`${d.doors} ${DOOR_TYPE_LABELS[d.doorType].toLowerCase()} com sistema de amortecimento.`);
-      if (d.drawers > 0) {
-        const dirTxt = d.drawerDir === 'vertical' ? 'dispostas lado a lado (verticais)' : 'empilhadas (horizontais)';
-        parts.push(`${d.drawers} gavetas ${dirTxt} com corrediças telescópicas reforçadas.`);
+      if (d.type === 'armario_l') {
+        parts.push(`Configuração em L (Canto) com Lado Esq. ${d.width}cm × Lado Dir. ${d.width2}cm.`);
       }
-      parts.push(`Acabamento com ${HANDLE_LABELS[d.handle].toLowerCase()} e instalação tipo ${MOUNT_LABELS[d.mount].toLowerCase()}.`);
-      if (d.led !== 'none') parts.push(`Inclui perfil de ${LED_LABELS[d.led]} embutido.`);
+      if (d.doors > 0) {
+        parts.push(`${d.doors} ${DOOR_TYPE_LABELS[d.doorType].toLowerCase()} com amortecimento.`);
+      }
+      if (d.drawers > 0) {
+        const posTxt = (DRAWER_POS_LABELS[d.drawerPos] || '').toLowerCase();
+        parts.push(`${d.drawers} gavetas (${posTxt}) com corrediças telescópicas reforçadas.`);
+      }
+      parts.push(`Acabamento com ${HANDLE_LABELS[d.handle].toLowerCase()} na cor ${profName} e base ${MOUNT_LABELS[d.mount].toLowerCase()}.`);
 
-      document.getElementById('ed-specs').value = parts.join(' ');
-      showToast('Memorial técnico preenchido!');
+      const extras = [];
+      if (d.profBorda) extras.push('fita de borda PVC 1mm/2mm');
+      if (d.profTrilho) extras.push('perfil trilho alumínio');
+      if (d.profLed || d.led !== 'none') extras.push(`perfil LED (${d.led !== 'none' ? LED_LABELS[d.led] : 'embutido'})`);
+      if (extras.length > 0) parts.push(`Inclui ${extras.join(', ')}.`);
+
+      return parts.join(' ');
+    }
+
+    function autoGenerateSpecsText() {
+      const d = getDraftItemFromEditor();
+      document.getElementById('ed-specs').value = buildTechnicalDescription(d);
+      showToast('Memorial técnico gerado!');
     }
 
     function updateEditorPreview() {
       const draft = getDraftItemFromEditor();
-      document.getElementById('live-dim-badge').textContent = `${draft.width} × ${draft.height} × ${draft.depth} cm`;
+      const dimBadge = draft.type === 'armario_l'
+        ? `L1:${draft.width} × L2:${draft.width2} × A:${draft.height} × P:${draft.depth} cm`
+        : `${draft.width} × ${draft.height} × ${draft.depth} cm`;
+      document.getElementById('live-dim-badge').textContent = dimBadge;
       document.getElementById('live-svg-preview-box').innerHTML = renderFurnitureVisualWrapper(draft, draft.internalView, false);
     }
 
     function saveEditorItem() {
       const itemData = getDraftItemFromEditor();
       if (!itemData.specs) {
-        // Preenche automaticamente um memorial limpo se o usuário deixar vazio
-        const bodyName = getMdfInfo(itemData.bodyColor).name;
-        const frontName = getMdfInfo(itemData.frontColor).name;
-        const dirTxt = itemData.drawerDir === 'vertical' ? 'lado a lado (verticais)' : 'empilhadas (horizontais)';
-        itemData.specs = `Caixaria em MDF ${bodyName} e frentes em ${frontName}. ${itemData.doors > 0 ? itemData.doors + ' portas (' + DOOR_TYPE_LABELS[itemData.doorType] + '). ' : ''}${itemData.drawers > 0 ? itemData.drawers + ' gavetas ' + dirTxt + '. ' : ''}${HANDLE_LABELS[itemData.handle]}.`;
+        itemData.specs = buildTechnicalDescription(itemData);
       }
 
       if (editingItemId) {
@@ -1794,7 +2380,10 @@
       zoomItemId = itemId;
       zoomInternalState = !!item.internalView;
       document.getElementById('zoom-modal-title').textContent = item.name;
-      document.getElementById('zoom-modal-subtitle').textContent = `${item.room || 'Ambiente'} • ${item.width} × ${item.height} × ${item.depth} cm`;
+      const dimTxt = item.type === 'armario_l'
+        ? `L1:${item.width} × L2:${item.width2 || 180} × A:${item.height} × P:${item.depth} cm`
+        : `${item.width} × ${item.height} × ${item.depth} cm`;
+      document.getElementById('zoom-modal-subtitle').textContent = `${item.room || 'Ambiente'} • ${dimTxt}`;
       renderZoomModalContent();
       document.getElementById('zoom-modal').classList.remove('hidden');
     }
@@ -1924,9 +2513,21 @@
       persistCompany();
     }
 
+    function updateBrandSwatchRing() {
+      const current = companyProfile.brandColor || '#b45309';
+      document.querySelectorAll('.brand-swatch').forEach(btn => {
+        const active = btn.dataset.brand === current;
+        btn.classList.toggle('ring-2', active);
+        btn.classList.toggle('ring-offset-2', active);
+        btn.classList.toggle('ring-slate-900', active);
+        btn.classList.toggle('scale-110', active);
+      });
+    }
+
     function setBrandColor(hex) {
       companyProfile.brandColor = hex;
       persistCompany();
+      updateBrandSwatchRing();
       renderPdfPreview();
       showToast('Cor principal atualizada!');
     }
@@ -1982,7 +2583,11 @@
         : currentQuote.items.map((item, idx) => {
             const bodyMdf = getMdfInfo(item.bodyColor);
             const frontMdf = getMdfInfo(item.frontColor);
-            const drawerDirLabel = item.drawerDir === 'vertical' ? 'Verticais (Lado a Lado)' : 'Horizontais (Empilhadas)';
+            const profColor = getProfileColorInfo(item.profileColor);
+            const dimLabel = item.type === 'armario_l'
+              ? `L1:${item.width} × L2:${item.width2 || 180} × A:${item.height} × P:${item.depth} cm`
+              : `${item.width} × ${item.height} × ${item.depth} cm`;
+            const drawerPosLabel = DRAWER_POS_LABELS[item.drawerPos] || 'Na Base';
 
             return `
               <div class="rounded-2xl border border-slate-200 overflow-hidden bg-white mb-4">
@@ -2008,12 +2613,12 @@
                   </div>
 
                   <div class="md:col-span-6 p-4 bg-slate-50/50 space-y-2.5 text-xs">
-                    <div class="bg-white p-2.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                    <div class="bg-white p-2.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
                       <div>
-                        <span class="block text-[10px] font-bold uppercase text-slate-400">Dimensões (L × A × P)</span>
-                        <span class="font-mono-tech font-extrabold text-slate-900">${item.width} × ${item.height} × ${item.depth} cm</span>
+                        <span class="block text-[10px] font-bold uppercase text-slate-400">Dimensões Externas</span>
+                        <span class="font-mono-tech font-extrabold text-slate-900">${dimLabel}</span>
                       </div>
-                      <span class="text-[10px] font-bold bg-slate-100 text-slate-700 px-2 py-1 rounded-md">${MOUNT_LABELS[item.mount] || 'Rodapé'}</span>
+                      <span class="text-[10px] font-bold bg-slate-100 text-slate-700 px-2 py-1 rounded-md shrink-0">${MOUNT_LABELS[item.mount] || 'Rodapé'}</span>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
@@ -2040,11 +2645,11 @@
                       </div>
                       <div>
                         <span class="block text-[9px] font-bold uppercase text-slate-400">Gavetas</span>
-                        <strong class="text-slate-800">${item.drawers > 0 ? `${item.drawers} un. ${drawerDirLabel}` : 'Sem gavetas'}</strong>
+                        <strong class="text-slate-800">${item.drawers > 0 ? `${item.drawers} un. (${drawerPosLabel})` : 'Sem gavetas'}</strong>
                       </div>
                       <div>
-                        <span class="block text-[9px] font-bold uppercase text-slate-400">Puxadores</span>
-                        <strong class="text-slate-800">${HANDLE_LABELS[item.handle]}</strong>
+                        <span class="block text-[9px] font-bold uppercase text-slate-400">Perfis / Puxador</span>
+                        <strong class="text-slate-800">${HANDLE_LABELS[item.handle]} (${profColor.name})</strong>
                       </div>
                       <div>
                         <span class="block text-[9px] font-bold uppercase text-slate-400">Iluminação</span>
@@ -2217,7 +2822,6 @@
       overlay.classList.remove('hidden');
 
       try {
-        // Garante sincronização dos últimos campos digitados
         syncStateFromInputs();
         syncCompanyFromInputs();
 
@@ -2225,7 +2829,6 @@
         const showChecklist = document.getElementById('opt-pdf-checklist').checked;
         const showSignatures = document.getElementById('opt-pdf-signatures').checked;
 
-        // Pré-renderiza todas as ilustrações dos móveis em PNG de alta definição
         const renderedAssets = [];
         for (const item of currentQuote.items) {
           if (item.customPhoto) {
@@ -2248,17 +2851,15 @@
         const pageW = 210;
         const pageH = 297;
         const margin = 12;
-        const contentW = pageW - margin * 2; // 186mm
+        const contentW = pageW - margin * 2;
         const [brandR, brandG, brandB] = hexToRgb(companyProfile.brandColor || '#b45309');
 
         let y = margin;
 
-        // Barra superior decorativa
         doc.setFillColor(brandR, brandG, brandB);
         doc.rect(0, 0, pageW, 4, 'F');
         y = 10;
 
-        // Logo da Marcenaria (se houver)
         let textStartX = margin;
         if (companyProfile.logoDataUrl) {
           try {
@@ -2279,7 +2880,6 @@
           textStartX = margin + 18;
         }
 
-        // Dados da Marcenaria
         doc.setTextColor(15, 23, 42);
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
@@ -2296,7 +2896,6 @@
           doc.text(doc.splitTextToSize(compLine2, 105)[0], textStartX, y + 14.5);
         }
 
-        // Caixa direita: Nº Projeto & Datas
         const metaW = 54;
         const metaX = pageW - margin - metaW;
         doc.setFillColor(248, 250, 252);
@@ -2316,13 +2915,11 @@
 
         y += 20;
 
-        // Linha divisória
         doc.setDrawColor(brandR, brandG, brandB);
         doc.setLineWidth(0.6);
         doc.line(margin, y, pageW - margin, y);
         y += 4;
 
-        // Bloco Dados do Cliente
         doc.setFillColor(248, 250, 252);
         doc.setDrawColor(226, 232, 240);
         doc.setLineWidth(0.3);
@@ -2350,7 +2947,6 @@
 
         y += 21;
 
-        // Título da Seção de Móveis
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(8.5);
         doc.setTextColor(71, 85, 105);
@@ -2360,42 +2956,40 @@
         doc.text('Medidas em centímetros (cm)', pageW - margin, y, { align: 'right' });
         y += 3.5;
 
-        // Loop pelos Móveis
         for (let i = 0; i < currentQuote.items.length; i++) {
           const item = currentQuote.items[i];
           const asset = renderedAssets[i];
           const bodyMdf = getMdfInfo(item.bodyColor);
           const frontMdf = getMdfInfo(item.frontColor);
-          const drawerDirLabel = item.drawerDir === 'vertical' ? 'Verticais (Lado a Lado)' : 'Horizontais (Empilhadas)';
+          const profColor = getProfileColorInfo(item.profileColor);
+          const drawerPosLabel = DRAWER_POS_LABELS[item.drawerPos] || 'Na Base';
+          const dimText = item.type === 'armario_l'
+            ? `L1:${item.width} × L2:${item.width2 || 180} × A:${item.height} × P:${item.depth} cm`
+            : `${item.width} × ${item.height} × ${item.depth} cm`;
 
-          const specLines = item.specs ? doc.splitTextToSize(`Memorial: ${item.specs}`, 86) : [];
+          const specLines = item.specs ? doc.splitTextToSize(`Memorial: ${item.specs}`, 88) : [];
           const hasInternalImg = !!(asset && asset.internal);
 
-          // Cálculo dinâmico de altura do card para nunca cortar
           const imgAreaH = hasInternalImg ? 110 : 58;
-          const textAreaH = 44 + specLines.length * 3.8;
+          const textAreaH = 48 + specLines.length * 3.8;
           const bodyAreaH = Math.max(imgAreaH, textAreaH);
           const headerH = 9.5;
           const cardH = headerH + bodyAreaH;
 
-          // Quebra de página preventiva se o card não couber inteiro
           if (y + cardH > pageH - 15) {
             doc.addPage();
             y = 14;
           }
 
-          // Moldura do Card
           doc.setFillColor(255, 255, 255);
           doc.setDrawColor(203, 213, 225);
           doc.setLineWidth(0.35);
           doc.roundedRect(margin, y, contentW, cardH, 3, 3, 'FD');
 
-          // Cabeçalho do Card
           doc.setFillColor(248, 250, 252);
           doc.rect(margin + 0.2, y + 0.2, contentW - 0.4, headerH, 'F');
           doc.line(margin, y + headerH, margin + contentW, y + headerH);
 
-          // Número do item
           doc.setFillColor(brandR, brandG, brandB);
           doc.roundedRect(margin + 3, y + 1.8, 6, 6, 1.5, 1.5, 'F');
           doc.setTextColor(255, 255, 255);
@@ -2403,14 +2997,12 @@
           doc.setFontSize(8.5);
           doc.text(String(i + 1), margin + 6, y + 6, { align: 'center' });
 
-          // Ambiente + Nome do Móvel
           doc.setTextColor(15, 23, 42);
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(9.5);
           const fullTitle = `${(item.room || 'Ambiente').toUpperCase()} — ${item.name}`;
           doc.text(doc.splitTextToSize(fullTitle, 145)[0], margin + 11.5, y + 6.2);
 
-          // Pill de Quantidade
           doc.setFillColor(15, 23, 42);
           doc.roundedRect(margin + contentW - 22, y + 2, 19, 5.5, 1.5, 1.5, 'F');
           doc.setTextColor(255, 255, 255);
@@ -2420,10 +3012,9 @@
 
           const contentTopY = y + headerH + 2;
 
-          // COLUNA ESQUERDA: IMAGEM DO MÓVEL (PROPORÇÃO EXATA SEM CORTES)
-          const leftBoxW = 88;
+          const leftBoxW = 86;
           if (asset && asset.main) {
-            const maxImgW = 82;
+            const maxImgW = 80;
             const maxImgH = 54;
             let drawImgW = maxImgW;
             let drawImgH = drawImgW / asset.main.ratio;
@@ -2437,7 +3028,7 @@
           }
 
           if (hasInternalImg) {
-            const maxImgW = 82;
+            const maxImgW = 80;
             const maxImgH = 50;
             let drawImgW = maxImgW;
             let drawImgH = drawImgW / asset.internal.ratio;
@@ -2450,37 +3041,32 @@
             doc.addImage(asset.internal.dataUrl, 'PNG', imgX, imgY, drawImgW, drawImgH);
           }
 
-          // Linha divisória vertical entre desenho e ficha técnica
           doc.setDrawColor(226, 232, 240);
           doc.line(margin + leftBoxW, y + headerH, margin + leftBoxW, y + cardH);
 
-          // COLUNA DIREITA: FICHA TÉCNICA COMPLETA
           const rx = margin + leftBoxW + 3.5;
           const rw = contentW - leftBoxW - 7;
           let ry = contentTopY + 1;
 
-          // Box Dimensões + Fixação
           doc.setFillColor(248, 250, 252);
           doc.roundedRect(rx, ry, rw, 10, 1.8, 1.8, 'F');
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(6.5);
           doc.setTextColor(100, 116, 139);
-          doc.text('DIMENSÕES (L × A × P)', rx + 2.5, ry + 3.5);
+          doc.text('DIMENSÕES EXTERNAS', rx + 2.5, ry + 3.5);
           doc.setFont('courier', 'bold');
-          doc.setFontSize(9);
+          doc.setFontSize(8.5);
           doc.setTextColor(15, 23, 42);
-          doc.text(`${item.width} × ${item.height} × ${item.depth} cm`, rx + 2.5, ry + 8);
+          doc.text(dimText, rx + 2.5, ry + 8);
 
           doc.setFont('helvetica', 'bold');
-          doc.setFontSize(7);
+          doc.setFontSize(6.8);
           doc.setTextColor(71, 85, 105);
           doc.text(MOUNT_LABELS[item.mount] || 'Rodapé', rx + rw - 2.5, ry + 6.5, { align: 'right' });
 
           ry += 12;
 
-          // Boxes de Cores MDF (Caixaria e Frentes com amostra real da cor)
           const halfW = (rw - 2) / 2;
-          // Caixaria
           doc.setFillColor(248, 250, 252);
           doc.roundedRect(rx, ry, halfW, 10, 1.8, 1.8, 'F');
           doc.setFillColor(bodyMdf.rgb[0], bodyMdf.rgb[1], bodyMdf.rgb[2]);
@@ -2494,7 +3080,6 @@
           doc.setTextColor(15, 23, 42);
           doc.text(doc.splitTextToSize(bodyMdf.name, halfW - 11)[0], rx + 9.5, ry + 8);
 
-          // Frentes
           const fx = rx + halfW + 2;
           doc.setFillColor(248, 250, 252);
           doc.roundedRect(fx, ry, halfW, 10, 1.8, 1.8, 'F');
@@ -2510,23 +3095,23 @@
 
           ry += 12.5;
 
-          // Detalhes de Portas, Gavetas (Sentido), Puxador e LED
           doc.setFont('helvetica', 'normal');
-          doc.setFontSize(7.5);
+          doc.setFontSize(7.3);
           doc.setTextColor(51, 65, 85);
 
           const portasTxt = item.doors > 0 ? `${item.doors} un. (${DOOR_TYPE_LABELS[item.doorType]})` : 'Sem portas';
-          const gavetasTxt = item.drawers > 0 ? `${item.drawers} un. ${drawerDirLabel}` : 'Sem gavetas';
-          doc.text(`• Portas: ${portasTxt}`, rx + 1, ry + 3);
-          doc.text(`• Gavetas: ${gavetasTxt}`, rx + 1, ry + 7.2);
-          doc.text(`• Puxador: ${HANDLE_LABELS[item.handle]}  |  ${LED_LABELS[item.led]}`, rx + 1, ry + 11.4);
+          const gavetasTxt = item.drawers > 0 ? `${item.drawers} un. — ${drawerPosLabel}` : 'Sem gavetas';
+          const perfilTxt = `${HANDLE_LABELS[item.handle]} (${profColor.name})`;
+
+          doc.text(doc.splitTextToSize(`• Portas: ${portasTxt}`, rw)[0], rx + 1, ry + 3);
+          doc.text(doc.splitTextToSize(`• Gavetas: ${gavetasTxt}`, rw)[0], rx + 1, ry + 7.2);
+          doc.text(doc.splitTextToSize(`• Perfil: ${perfilTxt} | ${LED_LABELS[item.led]}`, rw)[0], rx + 1, ry + 11.4);
 
           ry += 14.5;
 
-          // Memorial Descritivo do Item
           if (specLines.length > 0) {
             doc.setFont('helvetica', 'normal');
-            doc.setFontSize(7.3);
+            doc.setFontSize(7.2);
             doc.setTextColor(71, 85, 105);
             doc.text(specLines, rx + 1, ry + 2.5);
           }
@@ -2534,7 +3119,6 @@
           y += cardH + 4.5;
         }
 
-        // Observações Gerais
         if (currentQuote.notes) {
           const noteLines = doc.splitTextToSize(currentQuote.notes, contentW - 8);
           const noteBoxH = 9 + noteLines.length * 4;
@@ -2556,7 +3140,6 @@
           y += noteBoxH + 4.5;
         }
 
-        // Checklist em Obra
         if (showChecklist) {
           const checkH = 22;
           if (y + checkH > pageH - 16) {
@@ -2579,7 +3162,6 @@
           y += checkH + 5;
         }
 
-        // Assinaturas
         if (showSignatures) {
           if (y + 22 > pageH - 14) {
             doc.addPage();
@@ -2604,7 +3186,6 @@
           doc.text('Aprovação do Projeto', pageW - margin - 45, y + 8.5, { align: 'center' });
         }
 
-        // Rodapé com Numeração de Páginas
         const totalPages = doc.getNumberOfPages();
         for (let p = 1; p <= totalPages; p++) {
           doc.setPage(p);
@@ -2636,7 +3217,7 @@
      */
     function getSavedQuotesList() {
       try {
-        return JSON.parse(localStorage.getItem('marcenaria_studio_saved_v3') || '[]');
+        return JSON.parse(localStorage.getItem('marcenaria_studio_saved_v4') || '[]');
       } catch (e) {
         return [];
       }
@@ -2658,7 +3239,7 @@
       else list.unshift(entry);
 
       try {
-        localStorage.setItem('marcenaria_studio_saved_v3', JSON.stringify(list));
+        localStorage.setItem('marcenaria_studio_saved_v4', JSON.stringify(list));
         updateSavedBadgeCount();
         showToast('Projeto salvo no aparelho!');
       } catch (e) {
@@ -2705,7 +3286,7 @@
 
     function deleteSavedQuote(id) {
       const filtered = getSavedQuotesList().filter(q => q.id !== id);
-      localStorage.setItem('marcenaria_studio_saved_v3', JSON.stringify(filtered));
+      localStorage.setItem('marcenaria_studio_saved_v4', JSON.stringify(filtered));
       updateSavedBadgeCount();
       openSavedQuotesModal();
     }
